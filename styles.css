@@ -1,0 +1,31 @@
+html {
+    font-size: 16px;
+}
+
+.hide-checked {
+    opacity: 1;
+    max-height: 100px;
+    overflow: visible;
+    /*display: none*/
+}
+
+input[type="checkbox"]:checked ~ .hide-checked {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    /*display: block;*/
+}
+
+#where {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    /*display: none*/
+}
+
+input[type="checkbox"]:checked ~ #where {
+    opacity: 1;
+    max-height: 100px;
+    overflow: visible;
+    /*display: block;*/
+}

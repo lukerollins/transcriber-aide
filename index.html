@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Transcriber Aide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link href="normalize.css" rel="stylesheet" media="all">
+    <link href="styles.css" rel="stylesheet" media="all">
+
+</head>
+<body>
+
+    <h1>Transcriber Aide</h1>
+    <form>
+            <div>
+                <input type="text" id="name" required="required">
+                <label>Name</label>
+                <div>
+                
+                    
+                        <label>Phone</label>
+                        <input id="phoney" type="tel" required="required">
+                        <br>
+                            <input type="checkbox" name="from" id="from" value="from">
+                            <label>Called from another number?</label>
+                            <div id="where">
+                                <label>Called From</label>
+                                <input type="tel" class="require-active" id="you-not" data-phone="ringu" >
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!--<p>Hang Up?</p>-->
+                <label for="hangup">Hang Up?</label><input type="checkbox" name="hangup" id="hangup" value="hangup">
+            
+        <div class="hide-checked require-active">
+        <textarea data-phone="hangup" class="require-active" required="required" id="hook"></textarea>
+        </div>
+        <button id="meow">Submit</button>
+    </form>
+   
+      <script src="form.js"></script>
+</body>
+</html>
