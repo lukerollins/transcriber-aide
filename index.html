@@ -14,19 +14,26 @@
     <h1>Transcriber Aide</h1>
     <form>
             <div>
-                <input type="text" id="name" required="required">
-                <label>Name</label>
+                <label for="name">
+                <span>Name</span>
+                <input type="text" id="name" name="name" required="required">
+                <span class="error"></span>
+                </label>
                 <div>
                 
-                    
-                        <label>Phone</label>
-                        <input id="phoney" type="tel" required="required">
-                        <br>
+                        <div>
+                        <label for="phoney">
+                        <span>Phone</span>
+                        <input id="phoney" type="tel" required="required" >
+                        <span class="error"></span>
+                    </label>
+                    </div>
                             <input type="checkbox" name="from" id="from" value="from">
                             <label>Called from another number?</label>
                             <div id="where">
                                 <label>Called From</label>
-                                <input type="tel" class="require-active" id="you-not" data-phone="ringu" >
+                                <input class="require-active" id="you-not" data-phone="ringu" type="tel" >
+                                <span></span>
                             </div> 
                         </div>
                     </div>
@@ -37,7 +44,8 @@
                 <label for="hangup">Hang Up?</label><input type="checkbox" name="hangup" id="hangup" value="hangup">
             
         <div class="hide-checked require-active">
-        <textarea data-phone="hangup" class="require-active" required="required" id="hook"></textarea>
+        <textarea data-phone="hangup" class="require-active" id="hook" required="required"></textarea>
+        <span></span>
         </div>
         <button id="meow">Submit</button>
     </form>

@@ -15,6 +15,7 @@ today.now()*/
 
 //let caller = document.getElementById("phoney");
 let named = document.getElementById("name");
+let namedError = document.querySelector("#name + span.error");
 let another = document.querySelector('input[value="from"]');
 let from = document.getElementById('from');
 let checker = document.getElementsByClassName("require-active");
@@ -25,24 +26,72 @@ let fudge = document.getElementById("hook");
 let noWay = document.querySelector('input[value="hangup"]');
 let hangup = document.getElementById('hangup');
 let off = document.getElementById("you-not");
-let phoney = document.getElementById('phoney');
+let phoney = document.querySelector('#phoney');
+//let phoneyTwo = phoney.value;
+let phoneProb = document.querySelector('#phoney + span.error')
 //let ringu = document.getElementById('ringu');
 //let who =
 var tommy = new RegExp(/[\(\)]|\s|\-/g);
 //const ree = new RegExp(/^\d{7}(?:\d{3})?$/g);
-const ree = new RegExp(/^(\d{3})?(\d{3})(\d{4})$/)
+const ree = new RegExp(/^(\d{3})?(\d{3})(\d{4})$/);
 const meow = document.getElementById("meow");
-meow.addEventListener('click', subMission);
+var lou = /502/;
+const forms = document.getElementsByTagName('form');
+let callMee = document.querySelectorAll('input[type="tel"]')
 
 
-var lou = /502/
 //const chek = document.querySelectorAll('input[type="checkbox"]')
 
 /*function regPhone(e) {
     e.preventDefault();
 
 }*/
+var phoneBlargh = () => {
+  var baloney = phoney.value.replace(tommy, "");
+  if (ree.test(baloney) != true) {
+    return;
+  }
+    
+  
+}
 
+for(let c = 0; c < callMee.length; c++) {
+  callMee[c].setAttribute('pattern', ree.source)
+}
+
+
+for(let f = 0; f < forms.length; f++) {
+  forms[f].setAttribute('novalidate', true);
+}
+
+let erroneous = (field) => {
+  if (from.checked != true || hangup.checked != true || field.type === '' ) return;
+}
+
+/*function validation() {
+  if(ree.test(phoney.value))
+  {
+    phoney.setCustomValidity(console.log('Yup'))
+  } else {
+    phoney.setCustomValidity(console.log('Nope'))
+  }
+}
+
+function validator() {
+  if(another.checked == true) {
+    if(ree.test(off.value)) {
+       off.setCustomValidity(console.log('Okiley dokily'))
+    } else {
+       off.setCustomValidity(console.log("D'oh"))
+    }
+  } else {
+     console.log("Don't have a cow")
+  }
+}*/
+/*var constraint = new RegExp(ree);
+console.log(constraint);
+phoney.addEventListener('input', validation)
+off.addEventListener('input', validator)
 function subMission(e) {
   e.preventDefault();
   let hooked = hangUp()
@@ -52,16 +101,16 @@ function subMission(e) {
   console.log(named.value);  
   console.log(junk);
   console.log(train);  
-}
+}*/
 
 /*function youI() {
   addEventListener('click', conditional)
   console.log('frack')
-}
+}*/
 
 
 
-function conditional() {
+/*function conditional() {
   //var bank = document.getElementsByClassName('require-active')
 
 show.forEach((checker) => {
@@ -70,24 +119,24 @@ checker.setAttribute('required', 'required')}
 else {
 checker.removeAttribute('required')}})
 console.log("ugh")
-}
+}*/
 
-addEventListener('change', conditional)*/
+//addEventListener('change', conditional)
 //addEventListener('click', bindUI)
 
-function conjunc() {
+/*function conjunc() {
   var baloney = phoney.value.replace(tommy, "");
   if (ree.test(baloney) == true) {
     if (lou.test(baloney) == true)
-    { return baloney.slice(3)}
+    { return baloney.slice(3) && phoney.setCustomValidity(console.log('Yum'))}
     else {
-      return baloney}
+      return baloney && phoney.setCustomValidity(console.log('Still yummy'))}
   } 
    else {
-     return "Oscar Meyer!"
+     return "Oscar Meyer!" && phoney.setCustomValidity(console.log('Hungry'))
    }
       
-  }
+  }*/
 
 /*function conduct() {
   if (lou.test(cheese) == true)
@@ -97,7 +146,7 @@ function conjunc() {
     } 
 }*/
 
-function conduct() {
+/*function conduct() {
   var cheese = off.value.replace(tommy, "");
   if (another.checked == true)
   { if (ree.test(cheese) == true)
@@ -116,6 +165,39 @@ function hangUp() {
   } else {
     return "Nope!"
   }
+}*/
+
+document.addEventListener('submit', (e) => {
+  e.preventDefault()
+  if(!named.validity.valid) {
+    namingError()
+  } else {
+    namedError.innerHTML = '';
+    namedError.className = 'error'
+  }
+})
+
+function namingError() {
+  if (named.validity.valueMissing) {
+    namedError.textContent = 'Need a name. "None", "None given" or somehting of the sort will work, too.';
+  }
+}
+
+document.addEventListener('submit', (e) => {
+  e.preventDefault()
+  if(!phoney.validity.valid) {
+    phoneyError()
+  } else {
+    phoneProb.innerHTML = '';
+    phoneProb.className = 'error'
+  }
+})
+
+function phoneyError() {
+  if (phoney.validity.valueMissing) {
+    phoneProb.textContent = 'Need a number'
+  } else if (phoney.validity.patternMismatch)
+  { phoneProb.textContent = "That kinda number"}
 }
 
 function ugh() {
@@ -141,7 +223,16 @@ function ugh() {
         }
     
 //console.log(baloney)
-//console.log(cheese)        
+//console.log(cheese)
+//meow.addEventListener('click', subMission);
+/*named.addEventListener('', () => {
+  if(named.validity.valid) {
+    namedError.innerHTML = '';
+    namedError.className = 'error'
+  } else {
+    namingError();
+  }
+})*/
 noWay.addEventListener('change', oogh);
 another.addEventListener('change', ugh);
 //document.addEventListener('input')
@@ -241,6 +332,9 @@ if (cheese.test(baloney) == true)
 
 }
 conjunc()
+
+var regex = /\d{5}/;
+element.setAttribute("pattern", regex.source);
 */
 
 
