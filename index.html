@@ -31,9 +31,11 @@
                             <input type="checkbox" name="from" id="from" value="from">
                             <label>Called from another number?</label>
                             <div id="where">
-                                <label>Called From</label>
-                                <input class="require-active" id="you-not" data-phone="ringu" type="tel" >
-                                <span></span>
+                                <label>
+                                <span>Called From</span>
+                                <input class="require-active" id="you-not" type="tel" >
+                                <span class="error"></span>
+                                </label>
                             </div> 
                         </div>
                     </div>
@@ -44,8 +46,8 @@
                 <label for="hangup">Hang Up?</label><input type="checkbox" name="hangup" id="hangup" value="hangup">
             
         <div class="hide-checked require-active">
-        <textarea data-phone="hangup" class="require-active" id="hook" required="required"></textarea>
-        <span></span>
+        <textarea class="require-active" id="hook" required="required"></textarea>
+        <span class="error"></span>
         </div>
         <button id="meow">Submit</button>
     </form>
