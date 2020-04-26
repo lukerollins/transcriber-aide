@@ -18,9 +18,12 @@ let phoneProb = document.querySelector('#phoney + span.error')
 let offHookProb = document.querySelector('#you-not + span.error')
 const ree = new RegExp(/^(?:\(?([0-9]{3})\)?[-.*\s]?)?([0-9]{3})[-.*\s]?([0-9]{4})$/g);
 const meow = document.getElementById("meow");
+
 var lou = /502/;
 const forms = document.getElementsByTagName('form');
 let callMee = document.querySelectorAll('input[type="tel"]');
+
+
 
 for(let c = 0; c < callMee.length; c++) {
   callMee[c].setAttribute('pattern', ree.source)
@@ -35,15 +38,40 @@ let erroneous = (field) => {
   if (from.checked != true || hangup.checked != true || field.type === '' ) return;
 }
 
-document.addEventListener('submit', (e) => {
+let nameSub = (e) => {
   e.preventDefault()
   if(!named.validity.valid) {
     namingError()
   } else {
     namedError.innerHTML = '';
     namedError.className = 'error'
-  }
+    document.getElementById('copyName').innerHTML = "Name: " + named.value
+    + '<button id="diddly" type="button">Copy</button>'
+    var werk = document.getElementById('diddly');
+    werk.addEventListener('click', () => {
+    console.log("I werk!")
 })
+  }
+}
+
+document.addEventListener('submit', nameSub)
+
+/*document.addEventListener('submit', (e) => {
+  e.preventDefault()
+  if(!named.validity.valid) {
+    namingError()
+  } else {
+    namedError.innerHTML = '';
+    namedError.className = 'error'
+    document.getElementById('copyName').innerHTML = "Name: " + named.value  + '<button id="diddly" type="button">Copy</button>'
+    var werk = document.getElementById('diddly');
+werk.addEventListener('click', (e) => {
+  console.log("I werk!")
+})
+  }
+})*/
+
+
 
 function namingError() {
   if (named.validity.valueMissing) {
@@ -51,28 +79,72 @@ function namingError() {
   }
 }
 
-document.addEventListener('submit', (e) => {
+var blab = () => {
+  if(another.checked == true) {
+    document.getElementById('copyPhoneOne').innerHTML = "Phone: " + phoney.value + " called from; " + off.value + " call back number"
+  } else {
+    document.getElementById('copyPhoneOne').innerHTML = "Phone: " + phoney.value
+  }
+}
+
+let londonCalling = (e) => {
   e.preventDefault()
   if(!phoney.validity.valid) {
     phoneyError()
   } else {
     phoneProb.innerHTML = '';
     phoneProb.className = 'error'
-    console.log(phoney.value + " called from;")
+    blab()
+    
+  }
+}
+
+document.addEventListener('submit', londonCalling)
+
+let talkTalk = (e) => {
+  e.preventDefault()
+  if(!off.validity.valid) {
+    phoneMalfunction() 
+  } else {
+    offHookProb.innerHTML = '';
+    offHookProb.className = 'error'
+  }
+}
+
+document.addEventListener('submit', talkTalk)
+/*document.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  if(!phoney.validity.valid) {
+    phoneyError()
+  } else {
+    phoneProb.innerHTML = '';
+    phoneProb.className = 'error'
+    blab()
      
   }
-})
+})*/
 
-document.addEventListener('submit', (e) => {
+function daVille() {
+  var tommy = /[\(\)]|\s|\-/g;
+  let tutone = phoney.value.replace(tommy, "")
+  //let goodTime = tutone.match(/^(\d{3})?(\d{3})(\d{4})$/)
+   if(lou.test(tutone) == true) {
+    return tutone.slice(3)
+   } else {
+     return tutone
+   }
+}
+/*document.addEventListener('submit', (e) => {
   e.preventDefault()
   if(another.checked == true && off.validity.valid) {
-    return console.log(off.value + " call back number")
+    document.getElementById('copyPhoneTwo').innerHTML = " " + off.value + " call back number"
   } else {
     return null
   }
-})
+})*/
 
-document.addEventListener('submit', (e) => {
+/*document.addEventListener('submit', (e) => {
   e.preventDefault()
     if(!off.validity.valid) {
       phoneMalfunction() 
@@ -81,7 +153,7 @@ document.addEventListener('submit', (e) => {
       offHookProb.className = 'error'
       
     }
-})
+})*/
 
 
 function phoneyError() {
@@ -108,15 +180,25 @@ function hungUp() {
   }
 }
 
-document.addEventListener('submit', (e) => {
+function messenger() {
+  if (hangup.checked == true) {
+    document.getElementById("copyMsg").innerHTML = "Message: Hang Up" 
+  } else {
+    document.getElementById("copyMsg").innerHTML = "Message: " + fudge.value
+  }
+}
+
+let msgBox = (e) => {
   e.preventDefault()
   if(!fudge.validity.valid) {
     hungUp()
   } else {
     brokenHeart.innerHTML = '';
     brokenHeart.className = 'error'
+    messenger()
   }
-})
+}
+document.addEventListener('submit', msgBox)
 
 
 
