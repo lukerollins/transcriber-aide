@@ -18,10 +18,15 @@ let phoneProb = document.querySelector('#phoney + span.error')
 let offHookProb = document.querySelector('#you-not + span.error')
 const ree = new RegExp(/^(?:\(?([0-9]{3})\)?[-.*\s]?)?([0-9]{3})[-.*\s]?([0-9]{4})$/g);
 const meow = document.getElementById("meow");
-
-var lou = /502/;
+//var goodTime = phoney.value
+//var lou = /502/;
+//var tommy = /[\(\)]|\s|\-/g;
 const forms = document.getElementsByTagName('form');
 let callMee = document.querySelectorAll('input[type="tel"]');
+//var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
+var tutone
+
+var mathis
 
 
 
@@ -50,11 +55,11 @@ let nameSub = (e) => {
     var werk = document.getElementById('diddly');
     werk.addEventListener('click', () => {
     console.log("I werk!")
-})
-  }
+}) 
+  } 
 }
 
-document.addEventListener('submit', nameSub)
+
 
 /*document.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -79,27 +84,11 @@ function namingError() {
   }
 }
 
-var blab = () => {
-  if(another.checked == true) {
-    document.getElementById('copyPhoneOne').innerHTML = "Phone: " + phoney.value + " called from; " + off.value + " call back number"
-  } else {
-    document.getElementById('copyPhoneOne').innerHTML = "Phone: " + phoney.value
-  }
-}
 
-let londonCalling = (e) => {
-  e.preventDefault()
-  if(!phoney.validity.valid) {
-    phoneyError()
-  } else {
-    phoneProb.innerHTML = '';
-    phoneProb.className = 'error'
-    blab()
-    
-  }
-}
 
-document.addEventListener('submit', londonCalling)
+
+
+
 
 let talkTalk = (e) => {
   e.preventDefault()
@@ -125,16 +114,63 @@ document.addEventListener('submit', talkTalk)
   }
 })*/
 
-function daVille() {
-  var tommy = /[\(\)]|\s|\-/g;
-  let tutone = phoney.value.replace(tommy, "")
-  //let goodTime = tutone.match(/^(\d{3})?(\d{3})(\d{4})$/)
+/*function daVille() {
+  var goodTime = phoney.value
+  var lou = /502/;
+  var tommy = /[\(\)]|\s|\-/g;  
+  tutone = goodTime.replace(tommy, "");
+  
+  
    if(lou.test(tutone) == true) {
-    return tutone.slice(3)
+    tutone = tutone.slice(3)
    } else {
-     return tutone
-   }
+      tutone
+   } 
+   
 }
+
+function call() {
+  
+  var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
+  var jenny
+  jenny = tutone.match(matchCar)
+  
+  if (jenny) {
+    mathis = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
+  } else {
+    null
+  }
+}*/
+  function blab() {
+    var goodTime = phoney.value
+    var lou = /502/;
+    var tommy = /[\(\)]|\s|\-/g; 
+    var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
+  var jenny
+   
+    tutone = goodTime.replace(tommy, "");
+    if(lou.test(tutone) == true) {
+      tutone = tutone.slice(3)
+     } else {
+        tutone
+     }
+     jenny = tutone.match(matchCar)
+    if (jenny[1] == undefined) {
+      mathis = jenny[2] + '-' + jenny[3]
+    } else if (jenny[1] != undefined) {
+        mathis = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
+      
+    } else {
+      null
+    }
+
+    if(another.checked == true) {
+      document.getElementById('copyPhoneOne').innerHTML = 'Phone: ' + mathis + ' called from; ' +  'call back number'
+    } else {
+      document.getElementById('copyPhoneOne').innerHTML = 'Phone: ' + mathis
+    } 
+  }
+
 /*document.addEventListener('submit', (e) => {
   e.preventDefault()
   if(another.checked == true && off.validity.valid) {
@@ -198,7 +234,7 @@ let msgBox = (e) => {
     messenger()
   }
 }
-document.addEventListener('submit', msgBox)
+
 
 
 
@@ -223,11 +259,28 @@ function ugh() {
             console.log('no check')
         } 
         }
-    
+let londonCalling = (e) => {
+  e.preventDefault()
+  if(!phoney.validity.valid) {
+    phoneyError()
+  } else {
+    phoneProb.innerHTML = '';
+    phoneProb.className = 'error'
+    //daVille()
+    //call()
+    blab()
+  }
+}
+
+
+
+  
 
 noWay.addEventListener('change', oogh);
 another.addEventListener('change', ugh);
-
+document.addEventListener('submit', msgBox);
+document.addEventListener('submit', londonCalling);
+document.addEventListener('submit', nameSub);
 
 /* var jenny = "812-867-5309";
 var tommy = new RegExp('[\(\)]|-', 'g');
