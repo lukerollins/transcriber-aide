@@ -24,9 +24,7 @@ const meow = document.getElementById("meow");
 const forms = document.getElementsByTagName('form');
 let callMee = document.querySelectorAll('input[type="tel"]');
 //var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
-var tutone
 
-var mathis
 
 
 
@@ -141,14 +139,16 @@ function call() {
     null
   }
 }*/
-  function blab() {
-    var goodTime = phoney.value
+  function blob() {
+    var bugSpray = off.value
     var lou = /502/;
     var tommy = /[\(\)]|\s|\-/g; 
     var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
-  var jenny
+    var jenny
+    var tutone
+    var walter  
    
-    tutone = goodTime.replace(tommy, "");
+    tutone = bugSpray.replace(tommy, "");
     if(lou.test(tutone) == true) {
       tutone = tutone.slice(3)
      } else {
@@ -156,20 +156,16 @@ function call() {
      }
      jenny = tutone.match(matchCar)
     if (jenny[1] == undefined) {
-      mathis = jenny[2] + '-' + jenny[3]
+      walter = jenny[2] + '-' + jenny[3]
     } else if (jenny[1] != undefined) {
-        mathis = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
+        walter = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
       
     } else {
       null
     }
-
-    if(another.checked == true) {
-      document.getElementById('copyPhoneOne').innerHTML = 'Phone: ' + mathis + ' called from; ' +  'call back number'
-    } else {
-      document.getElementById('copyPhoneOne').innerHTML = 'Phone: ' + mathis
-    } 
-  }
+    blab(walter)
+     
+    }
 
 /*document.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -218,9 +214,15 @@ function hungUp() {
 
 function messenger() {
   if (hangup.checked == true) {
-    document.getElementById("copyMsg").innerHTML = "Message: Hang Up" 
+    document.getElementById("copyMsg").innerHTML = "Message: Hang Up" + '<button id="doodly" type="button">Copy</button>'
+    var doodly = document.getElementById('doodly');
+    doodly.addEventListener('click', () => {
+    console.log("I werk, as well!")})
   } else {
-    document.getElementById("copyMsg").innerHTML = "Message: " + fudge.value
+    document.getElementById("copyMsg").innerHTML = "Message: " + fudge.value + '<button id="doodly" type="button">Copy</button>'
+    var doodly = document.getElementById('doodly');
+    doodly.addEventListener('click', () => {
+    console.log("I werk, as well!")})
   }
 }
 
@@ -269,9 +271,51 @@ let londonCalling = (e) => {
     //daVille()
     //call()
     blab()
+    blob()
   }
 }
 
+function blab(walter) {
+  
+  var goodTime = phoney.value
+  var lou = /502/;
+  var tommy = /[\(\)]|\s|\-/g; 
+  var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
+  var jenny
+  var tutone
+  var mathis  
+ 
+  tutone = goodTime.replace(tommy, "");
+  if(lou.test(tutone) == true) {
+    tutone = tutone.slice(3)
+   } else {
+      tutone
+   }
+   jenny = tutone.match(matchCar)
+  if (jenny[1] == undefined) {
+    mathis = jenny[2] + '-' + jenny[3]
+  } else if (jenny[1] != undefined) {
+      mathis = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
+    
+  } else {
+    null
+  }
+
+  if(another.checked == true) {
+    document.getElementById('copyPhoneOne').innerHTML = 'Phone: ' + mathis + ' called from; ' + walter + ' call back number' + '<button id="deedly" type="button">Copy</button>'
+    var deedly = document.getElementById('deedly');
+    deedly.addEventListener('click', () => {
+    console.log("I werk, too!")
+})
+  } else {
+    document.getElementById('copyPhoneOne').innerHTML = 'Phone: ' + mathis
+    + '<button id="deedly" type="button">Copy</button>'
+    var deedly = document.getElementById('deedly');
+    deedly.addEventListener('click', () => {
+    console.log("I werk, too!") 
+    }) 
+  }
+}
 
 
   
