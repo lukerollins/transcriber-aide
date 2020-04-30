@@ -48,16 +48,28 @@ let nameSub = (e) => {
   } else {
     namedError.innerHTML = '';
     namedError.className = 'error'
-    document.getElementById('copyName').innerHTML = "Name: " + named.value
+    document.getElementById('copyName').innerHTML = '<span>Name:</span><textarea id="naming" readonly="" >' + named.value + "</textarea>"
     + '<button id="diddly" type="button">Copy</button>'
-    var werk = document.getElementById('diddly');
-    werk.addEventListener('click', () => {
-    console.log("I werk!")
-}) 
-  } 
+    var namedWerk = document.getElementById('diddly');
+    var copiedName = (naming) => {
+      var naming = document.getElementById('naming');
+      naming.select();
+      document.execCommand('copy');
+    }
+    namedWerk.addEventListener('click', copiedName);
 }
+  } 
 
-
+ 
+/*
+Code to copy to clipboard....
+  var copyToClipboard = function(secretInfo) {
+  secretInfo.select();
+  document.execCommand('copy');
+  btnCopy.addEventListener('click', function(ev) {
+    copyToClipboard(secretInfo);
+  });
+}*/
 
 /*document.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -214,16 +226,29 @@ function hungUp() {
 
 function messenger() {
   if (hangup.checked == true) {
-    document.getElementById("copyMsg").innerHTML = "Message: Hang Up" + '<button id="doodly" type="button">Copy</button>'
+    /*document.getElementById("copyMsg").innerHTML = "Message: Hang Up" + '<button id="doodly" type="button">Copy</button>'
     var doodly = document.getElementById('doodly');
     doodly.addEventListener('click', () => {
-    console.log("I werk, as well!")})
-  } else {
-    document.getElementById("copyMsg").innerHTML = "Message: " + fudge.value + '<button id="doodly" type="button">Copy</button>'
-    var doodly = document.getElementById('doodly');
-    doodly.addEventListener('click', () => {
-    console.log("I werk, as well!")})
+    console.log("I werk, as well!")})*/
+    document.getElementById('copyMsg').innerHTML = '<span>Message:</span><textarea id="msging" readonly="">Hang Up</textarea><button id="doodly" type="button">Copy</button>'
+    var msgWerk = document.getElementById('doodly');
+    var copiedName = (msging) => {
+      var msging = document.getElementById('msging');
+      msging.select();
+      document.execCommand('copy');
+    }
+    msgWerk.addEventListener('click', copiedName);
+} else {
+  document.getElementById('copyMsg').innerHTML = '<span>Message:</span><textarea id="msging" readonly="" >' + fudge.value + '</textarea>'
+  + '<button id="doodly" type="button">Copy</button>'
+  var msgWerk = document.getElementById('doodly');
+  var copiedMsg = (msging) => {
+    var msging = document.getElementById('msging');
+    msging.select();
+    document.execCommand('copy');
   }
+  msgWerk.addEventListener('click', copiedMsg);
+}
 }
 
 let msgBox = (e) => {
@@ -302,20 +327,28 @@ function blab(walter) {
   }
 
   if(another.checked == true) {
-    document.getElementById('copyPhoneOne').innerHTML = 'Phone: ' + mathis + ' called from; ' + walter + ' call back number' + '<button id="deedly" type="button">Copy</button>'
-    var deedly = document.getElementById('deedly');
-    deedly.addEventListener('click', () => {
-    console.log("I werk, too!")
-})
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <span/><textarea id="phoning" readonly="">' + mathis + ' called from; ' + walter + ' call back number</textarea>' + '<button id="riddly" type="button">Copy</button>'
+    var riddly = document.getElementById('riddly');
+    var copyPhoning = (phoning) => {
+    var phoning = document.getElementById('phoning');
+    phoning.select()
+    document.execCommand('copy');
+    }
+    riddly.addEventListener('click', copyPhoning) 
+  
+
   } else {
-    document.getElementById('copyPhoneOne').innerHTML = 'Phone: ' + mathis
-    + '<button id="deedly" type="button">Copy</button>'
-    var deedly = document.getElementById('deedly');
-    deedly.addEventListener('click', () => {
-    console.log("I werk, too!") 
-    }) 
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: </span><textarea id="phoning" readonly="">' + mathis + '</textarea>' + '<button id="riddly" type="button">Copy</button>'
+    var riddly = document.getElementById('riddly');
+    var copyPhoning = (phoning) => {
+    var phoning = document.getElementById('phoning');
+    phoning.select()
+    document.execCommand('copy');
+    }
+    riddly.addEventListener('click', copyPhoning) 
   }
 }
+
 
 
   
