@@ -50,3 +50,11 @@ input:invalid {
     border-color: #900;
         background-color: #FDD; 
 }
+
+button#copierDeux {
+    display: none;
+}
+
+pre.previous {
+    display: inline-block;
+}

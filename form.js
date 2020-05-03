@@ -18,16 +18,22 @@ let phoneProb = document.querySelector('#phoney + span.error')
 let offHookProb = document.querySelector('#you-not + span.error')
 const ree = new RegExp(/^(?:\(?([0-9]{3})\)?[-.*\s]?)?([0-9]{3})[-.*\s]?([0-9]{4})$/g);
 const meow = document.getElementById("meow");
-//var goodTime = phoney.value
-//var lou = /502/;
-//var tommy = /[\(\)]|\s|\-/g;
-const forms = document.getElementsByTagName('form');
+
+
+var transcribble
+var lou = /502/;
+var tommy = /[\(\)]|\s|\-/g; 
+var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
+var jenny
+var tutone
+var mathis 
+var walter
+copierDeux = document.getElementById('copierDeux')
+
+
+function setup() {
 let callMee = document.querySelectorAll('input[type="tel"]');
-//var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
-
-
-
-
+const forms = document.getElementsByTagName('form');
 for(let c = 0; c < callMee.length; c++) {
   callMee[c].setAttribute('pattern', ree.source)
 }
@@ -36,6 +42,8 @@ for(let c = 0; c < callMee.length; c++) {
 for(let f = 0; f < forms.length; f++) {
   forms[f].setAttribute('novalidate', true);
 }
+}
+
 
 let erroneous = (field) => {
   if (from.checked != true || hangup.checked != true || field.type === '' ) return;
@@ -48,13 +56,19 @@ let nameSub = (e) => {
   } else {
     namedError.innerHTML = '';
     namedError.className = 'error'
-    document.getElementById('copyName').innerHTML = '<span>Name:</span><textarea id="naming" readonly="" >' + named.value + "</textarea>"
+    document.getElementById('copyName').innerHTML = '<span> Name: <pre id="naming" class="previous">' + named.value + '</pre></span>'
     + '<button id="diddly" type="button">Copy</button>'
     var namedWerk = document.getElementById('diddly');
-    var copiedName = (naming) => {
+    var copiedName = () => {
+      //ev.preventDefault();
+      
       var naming = document.getElementById('naming');
-      naming.select();
-      document.execCommand('copy');
+      var range = document.createRange();
+      range.selectNode(naming);
+      window.getSelection().removeAllRanges(); // clear current selection
+      window.getSelection().addRange(range); // to select text
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
     }
     namedWerk.addEventListener('click', copiedName);
 }
@@ -86,19 +100,11 @@ werk.addEventListener('click', (e) => {
   }
 })*/
 
-
-
 function namingError() {
   if (named.validity.valueMissing) {
     namedError.textContent = 'Need a name. "None", "None given" or somehting of the sort will work, too.';
   }
 }
-
-
-
-
-
-
 
 let talkTalk = (e) => {
   e.preventDefault()
@@ -153,12 +159,12 @@ function call() {
 }*/
   function blob() {
     var bugSpray = off.value
-    var lou = /502/;
-    var tommy = /[\(\)]|\s|\-/g; 
-    var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
-    var jenny
-    var tutone
-    var walter  
+    //var lou = /502/;
+    //var tommy = /[\(\)]|\s|\-/g; 
+    //var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
+    //var jenny
+    //var tutone
+      
    
     tutone = bugSpray.replace(tommy, "");
     if(lou.test(tutone) == true) {
@@ -169,14 +175,11 @@ function call() {
      jenny = tutone.match(matchCar)
     if (jenny[1] == undefined) {
       walter = jenny[2] + '-' + jenny[3]
-    } else if (jenny[1] != undefined) {
+    } else if (jenny[1] == undefined) {
         walter = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
       
-    } else {
-      null
     }
-    blab(walter)
-     
+    blab(walter) 
     }
 
 /*document.addEventListener('submit', (e) => {
@@ -230,22 +233,32 @@ function messenger() {
     var doodly = document.getElementById('doodly');
     doodly.addEventListener('click', () => {
     console.log("I werk, as well!")})*/
-    document.getElementById('copyMsg').innerHTML = '<span>Message:</span><textarea id="msging" readonly="">Hang Up</textarea><button id="doodly" type="button">Copy</button>'
+    document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">Hang Up</pre></span><button id="doodly" type="button">Copy</button>'
     var msgWerk = document.getElementById('doodly');
-    var copiedName = (msging) => {
-      var msging = document.getElementById('msging');
-      msging.select();
-      document.execCommand('copy');
+    var copiedMsg = () => {
+      
+      var range = document.createRange();
+      range.selectNode(msging);
+      window.getSelection().removeAllRanges(); // clear current selection
+      window.getSelection().addRange(range); // to select text
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
     }
-    msgWerk.addEventListener('click', copiedName);
+    msgWerk.addEventListener('click', copiedMsg);
 } else {
-  document.getElementById('copyMsg').innerHTML = '<span>Message:</span><textarea id="msging" readonly="" >' + fudge.value + '</textarea>'
+  document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">' + fudge.value + '</pre></span>'
   + '<button id="doodly" type="button">Copy</button>'
   var msgWerk = document.getElementById('doodly');
   var copiedMsg = (msging) => {
-    var msging = document.getElementById('msging');
-    msging.select();
-    document.execCommand('copy');
+    
+      var msging = document.getElementById('msging');
+      
+      var range = document.createRange();
+      range.selectNode(msging);
+      window.getSelection().removeAllRanges(); // clear current selection
+      window.getSelection().addRange(range); // to select text
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
   }
   msgWerk.addEventListener('click', copiedMsg);
 }
@@ -293,22 +306,14 @@ let londonCalling = (e) => {
   } else {
     phoneProb.innerHTML = '';
     phoneProb.className = 'error'
-    //daVille()
-    //call()
     blab()
     blob()
   }
 }
 
-function blab(walter) {
-  
+function blab() {
   var goodTime = phoney.value
-  var lou = /502/;
-  var tommy = /[\(\)]|\s|\-/g; 
-  var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
-  var jenny
-  var tutone
-  var mathis  
+   
  
   tutone = goodTime.replace(tommy, "");
   if(lou.test(tutone) == true) {
@@ -322,42 +327,100 @@ function blab(walter) {
   } else if (jenny[1] != undefined) {
       mathis = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
     
-  } else {
-    null
-  }
+  } 
 
   if(another.checked == true) {
-    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <span/><textarea id="phoning" readonly="">' + mathis + ' called from; ' + walter + ' call back number</textarea>' + '<button id="riddly" type="button">Copy</button>'
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button">Copy</button>'
     var riddly = document.getElementById('riddly');
     var copyPhoning = (phoning) => {
-    var phoning = document.getElementById('phoning');
-    phoning.select()
-    document.execCommand('copy');
+      var phoning = document.getElementById('phoning');
+      var range = document.createRange();
+      range.selectNode(phoning);
+      window.getSelection().removeAllRanges(); // clear current selection
+      window.getSelection().addRange(range); // to select text
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
     }
     riddly.addEventListener('click', copyPhoning) 
   
 
   } else {
-    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: </span><textarea id="phoning" readonly="">' + mathis + '</textarea>' + '<button id="riddly" type="button">Copy</button>'
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone:<pre id="phoning" class="previous">' + mathis + '</pre></span>' + '<button id="riddly" type="button">Copy</button>'
     var riddly = document.getElementById('riddly');
     var copyPhoning = (phoning) => {
     var phoning = document.getElementById('phoning');
-    phoning.select()
-    document.execCommand('copy');
+    var range = document.createRange();
+    range.selectNode(phoning);
+    window.getSelection().removeAllRanges(); // clear current selection
+    window.getSelection().addRange(range); // to select text
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    
     }
     riddly.addEventListener('click', copyPhoning) 
+  } 
+  
+    var copierName = document.getElementById('copierName')
+    var copierPhoneOne = document.getElementById('copierPhoneOne')
+    var copierMsg = document.getElementById('copierMsg')
+    copierName.innerHTML = 'Name: ' + named.value;
+    if(hangup.checked == true) {
+      copierMsg.innerHTML = "Message: Hang Up"
+    } else {
+      copierMsg.innerHTML = "Message: " + fudge.value
+    }
+    if(another.checked == true) {
+      copierPhoneOne.innerHTML = 'Phone: ' + mathis + ' called from; ' + walter + ' call back number' 
+    } else {
+      copierPhoneOne.innerHTML = 'Phone: ' + mathis
+    };
+}
+  var dysfunctional = (transcribe) => { 
+   //e.preventDefault()
+  var transcribe = document.querySelector('.transcribe')
+  var but = document.createElement('button')
+  //var  = document.querySelector('body')
+  transcribe.appendChild(but)
+  but.innerText = 'Copy'
+  copierDeux.style.display = 'block'
+function setAttributes(el, attrs) {
+  for(var key in attrs) {
+    el.setAttribute(key, attrs[key]);
   }
+}
+setAttributes(but, {"type": "button", "id": "copierDeux"});
+}
+document.addEventListener('submit', dysfunctional);
+
+var copyScribble = (transcribble) => {
+  transcribble = document.querySelector('.transcribble');
+  
+ 
+  
+  var range = document.createRange();
+  range.selectNode(transcribble);
+  window.getSelection().removeAllRanges(); // clear current selection
+  window.getSelection().addRange(range); // to select text
+  document.execCommand("copy");
+  window.getSelection().removeAllRanges();
+  console.log("Pressed");
+  
+
+  //copyScribble();
 }
 
 
 
-  
 
+
+  
+setup()
 noWay.addEventListener('change', oogh);
 another.addEventListener('change', ugh);
 document.addEventListener('submit', msgBox);
 document.addEventListener('submit', londonCalling);
 document.addEventListener('submit', nameSub);
+copierDeux.addEventListener('click', copyScribble)
 
 /* var jenny = "812-867-5309";
 var tommy = new RegExp('[\(\)]|-', 'g');
