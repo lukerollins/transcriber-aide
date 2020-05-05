@@ -2,6 +2,14 @@ html {
     font-size: 16px;
 }
 
+body {
+    margin: 1rem;
+}
+
+h1 {
+    text-align: center;
+}
+
 .hide-checked {
     opacity: 1;
     max-height: 100px;
@@ -53,8 +61,64 @@ input:invalid {
 
 button#copierDeux {
     display: none;
+    margin: 1rem;
 }
 
 pre.previous {
     display: inline-block;
+}
+
+
+/*span.copied:focus {
+    
+    
+    transition: ease-in-out .8s all;
+    opacity: 1;
+    z-index: 20;
+}*/
+
+button.tooltip {
+    display: inline; 
+    position:relative
+}
+button.tooltip:hover 
+{
+    text-decoration:none
+}
+
+
+button.tooltip:active::after {
+    background: #111;
+    background: rgba(0,0,0,.8);
+    border-radius: 5px;
+    bottom: 18px;
+    color: #fff;
+    content: attr(title);
+    display: block;
+    left: 50%;
+    padding: 5px 15px;
+    position: absolute;
+    white-space: nowrap;
+    z-index: 98;
+    transition-duration: 5s;
+     transition-delay: 2s;
+    
+   }
+   
+   button.tooltip:active::before {
+     border:solid;
+     border-color:#111 transparent;
+     border-width:6px 6px 0 6px;
+     bottom:12px;
+     content:"";
+     display:block;
+     left:75%;
+     position:absolute;
+     z-index:99;
+     transition-duration: 5s;
+     transition-delay: 2s;
+    }
+
+button#copierDeux {
+    margin: 0 auto;
 }

@@ -29,7 +29,14 @@ var tutone
 var mathis 
 var walter
 copierDeux = document.getElementById('copierDeux')
-
+var tooltips = () => {
+//e.preventDefault()
+var btns = document.querySelectorAll('button[type="button"]');
+for (var i = 0; i < btns.length; i++) {
+  btns[i].setAttribute('class', 'tooltip');
+  btns[i].setAttribute('title', 'Copied');
+}
+}
 
 function setup() {
 let callMee = document.querySelectorAll('input[type="tel"]');
@@ -56,7 +63,7 @@ let nameSub = (e) => {
   } else {
     namedError.innerHTML = '';
     namedError.className = 'error'
-    document.getElementById('copyName').innerHTML = '<span> Name: <pre id="naming" class="previous">' + named.value + '</pre></span>'
+    document.getElementById('copyName').innerHTML = '<span>Name:<pre id="naming" class="previous">' + named.value + '</pre></span>'
     + '<button id="diddly" type="button">Copy</button>'
     var namedWerk = document.getElementById('diddly');
     var copiedName = () => {
@@ -233,7 +240,7 @@ function messenger() {
     var doodly = document.getElementById('doodly');
     doodly.addEventListener('click', () => {
     console.log("I werk, as well!")})*/
-    document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">Hang Up</pre></span><button id="doodly" type="button">Copy</button>'
+    document.getElementById('copyMsg').innerHTML = '<span>Message:<pre id="msging" class="previous">Hang Up</pre></span><button id="doodly" type="button">Copy</button>'
     var msgWerk = document.getElementById('doodly');
     var copiedMsg = () => {
       
@@ -246,7 +253,7 @@ function messenger() {
     }
     msgWerk.addEventListener('click', copiedMsg);
 } else {
-  document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">' + fudge.value + '</pre></span>'
+  document.getElementById('copyMsg').innerHTML = '<span>Message:<pre id="msging" class="previous">' + fudge.value + '</pre></span>'
   + '<button id="doodly" type="button">Copy</button>'
   var msgWerk = document.getElementById('doodly');
   var copiedMsg = (msging) => {
@@ -275,9 +282,6 @@ let msgBox = (e) => {
   }
 }
 
-
-
-
 function ugh() {
     
     if(another.checked != true) {
@@ -299,6 +303,7 @@ function ugh() {
             console.log('no check')
         } 
         }
+
 let londonCalling = (e) => {
   e.preventDefault()
   if(!phoney.validity.valid) {
@@ -330,7 +335,7 @@ function blab() {
   } 
 
   if(another.checked == true) {
-    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button">Copy</button>'
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone:<pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button">Copy</button>'
     var riddly = document.getElementById('riddly');
     var copyPhoning = (phoning) => {
       var phoning = document.getElementById('phoning');
@@ -378,9 +383,12 @@ function blab() {
   var dysfunctional = (transcribe) => { 
    //e.preventDefault()
   var transcribe = document.querySelector('.transcribe')
+  //var hOne = document.createElement('h1')
   var but = document.createElement('button')
   //var  = document.querySelector('body')
   transcribe.appendChild(but)
+  //transcribe.appendChild(hOne)
+  //hOne.innerText = 'Singular'
   but.innerText = 'Copy'
   copierDeux.style.display = 'block'
 function setAttributes(el, attrs) {
@@ -408,7 +416,15 @@ var copyScribble = (transcribble) => {
 
   //copyScribble();
 }
+/*function showTooltip(elem, msg) {
+  elem.setAttribute('class', 'tooltip');
+  elem.setAttribute('title', msg);
+}
 
+function clearTooltip(e) {
+  e.currentTarget.setAttribute('class', 'btn');
+  e.currentTarget.removeAttribute('title');
+}*/
 
 
 
@@ -421,6 +437,7 @@ document.addEventListener('submit', msgBox);
 document.addEventListener('submit', londonCalling);
 document.addEventListener('submit', nameSub);
 copierDeux.addEventListener('click', copyScribble)
+document.addEventListener('submit', tooltips)
 
 /* var jenny = "812-867-5309";
 var tommy = new RegExp('[\(\)]|-', 'g');
