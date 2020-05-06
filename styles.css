@@ -59,6 +59,11 @@ input:invalid {
         background-color: #FDD; 
 }
 
+textarea:invalid {
+    border-color: #900;
+        background-color: #FDD; 
+}
+
 button#copierDeux {
     display: none;
     margin: 1rem;
@@ -66,6 +71,7 @@ button#copierDeux {
 
 pre.previous {
     display: inline-block;
+    font-size: 11pt;
 }
 
 
@@ -121,4 +127,8 @@ button.tooltip:active::after {
 
 button#copierDeux {
     margin: 0 auto;
+}
+
+p.transcribble {
+    font-size: 11pt;
 }

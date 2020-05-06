@@ -18,8 +18,9 @@ let phoneProb = document.querySelector('#phoney + span.error')
 let offHookProb = document.querySelector('#you-not + span.error')
 const ree = new RegExp(/^(?:\(?([0-9]{3})\)?[-.*\s]?)?([0-9]{3})[-.*\s]?([0-9]{4})$/g);
 const meow = document.getElementById("meow");
-
-
+const digi = new RegExp(/\d+/);
+let theNumbers = document.getElementById('theNumbers');
+let numberError = document.querySelector('#theNumbers + span.error')
 var transcribble
 var lou = /502/;
 var tommy = /[\(\)]|\s|\-/g; 
@@ -41,10 +42,14 @@ for (var i = 0; i < btns.length; i++) {
 function setup() {
 let callMee = document.querySelectorAll('input[type="tel"]');
 const forms = document.getElementsByTagName('form');
+
 for(let c = 0; c < callMee.length; c++) {
   callMee[c].setAttribute('pattern', ree.source)
 }
 
+for(let n = 0; n < theNumbers. length; n++) {
+theNumbers[n].setAttribute('pattern', digi.source)
+}
 
 for(let f = 0; f < forms.length; f++) {
   forms[f].setAttribute('novalidate', true);
@@ -112,6 +117,51 @@ function namingError() {
     namedError.textContent = 'Need a name. "None", "None given" or somehting of the sort will work, too.';
   }
 }
+
+function numeralError() {
+  if (theNumbers.validity.valueMissing) {
+    numberError.textContent = "Need the row number. One more than the actual row, remember"
+  } else if (theNumbers.validity.patternMismatch) {
+    "Can't be a decimal or negative number. Rows can't be either of those."
+  }
+}
+
+let numberSubs = (e) => {
+  e.preventDefault()
+  if (!theNumbers.validity.valid) {
+    numeralError()
+  } else {
+    numberError.innerHTML = '';
+    numberError.className = 'error'
+    document.getElementById('numberedCopy').innerHTML = '<span>Row Number: <pre id="numbering" class="previous">' + theNumbers.value + '</pre></span><button id="chalmers" type="button">Copy</button> /// <span>Subject: <pre id="subjective" class="previous">#' + theNumbers.value + '</pre></span><button id="skinner" type="button">Copy</button>'
+    var chalmers = document.getElementById('chalmers');
+    var skinner = document.getElementById('skinner');
+    var copyNum = () => {
+      //ev.preventDefault();
+      var numbering = document.getElementById('numbering');
+      var range = document.createRange();
+      range.selectNode(numbering);
+      window.getSelection().removeAllRanges(); // clear current selection
+      window.getSelection().addRange(range); // to select text
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+    }
+    chalmers.addEventListener('click', copyNum);
+    var copySubject = () => {
+      var subjective = document.getElementById('subjective');
+      var range = document.createRange();
+        range.selectNode(subjective);
+        window.getSelection().removeAllRanges(); // clear current selection
+        window.getSelection().addRange(range); // to select text
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+    }
+    skinner.addEventListener('click', copySubject);
+}
+  } 
+   
+  
+
 
 let talkTalk = (e) => {
   e.preventDefault()
@@ -240,7 +290,7 @@ function messenger() {
     var doodly = document.getElementById('doodly');
     doodly.addEventListener('click', () => {
     console.log("I werk, as well!")})*/
-    document.getElementById('copyMsg').innerHTML = '<span>Message:<pre id="msging" class="previous">Hang Up</pre></span><button id="doodly" type="button">Copy</button>'
+    document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">Hang Up</pre></span><button id="doodly" type="button">Copy</button>'
     var msgWerk = document.getElementById('doodly');
     var copiedMsg = () => {
       
@@ -253,7 +303,7 @@ function messenger() {
     }
     msgWerk.addEventListener('click', copiedMsg);
 } else {
-  document.getElementById('copyMsg').innerHTML = '<span>Message:<pre id="msging" class="previous">' + fudge.value + '</pre></span>'
+  document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">' + fudge.value + '</pre></span>'
   + '<button id="doodly" type="button">Copy</button>'
   var msgWerk = document.getElementById('doodly');
   var copiedMsg = (msging) => {
@@ -271,6 +321,8 @@ function messenger() {
 }
 }
 
+
+
 let msgBox = (e) => {
   e.preventDefault()
   if(!fudge.validity.valid) {
@@ -279,6 +331,7 @@ let msgBox = (e) => {
     brokenHeart.innerHTML = '';
     brokenHeart.className = 'error'
     messenger()
+    dysfunctional()
   }
 }
 
@@ -335,7 +388,7 @@ function blab() {
   } 
 
   if(another.checked == true) {
-    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone:<pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button">Copy</button>'
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button">Copy</button>'
     var riddly = document.getElementById('riddly');
     var copyPhoning = (phoning) => {
       var phoning = document.getElementById('phoning');
@@ -350,7 +403,7 @@ function blab() {
   
 
   } else {
-    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone:<pre id="phoning" class="previous">' + mathis + '</pre></span>' + '<button id="riddly" type="button">Copy</button>'
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + '</pre></span>' + '<button id="riddly" type="button">Copy</button>'
     var riddly = document.getElementById('riddly');
     var copyPhoning = (phoning) => {
     var phoning = document.getElementById('phoning');
@@ -363,7 +416,9 @@ function blab() {
     
     }
     riddly.addEventListener('click', copyPhoning) 
-  } 
+  }
+  
+  
   
     var copierName = document.getElementById('copierName')
     var copierPhoneOne = document.getElementById('copierPhoneOne')
@@ -379,9 +434,10 @@ function blab() {
     } else {
       copierPhoneOne.innerHTML = 'Phone: ' + mathis
     };
+    
 }
   var dysfunctional = (transcribe) => { 
-   //e.preventDefault()
+   
   var transcribe = document.querySelector('.transcribe')
   //var hOne = document.createElement('h1')
   var but = document.createElement('button')
@@ -398,7 +454,7 @@ function setAttributes(el, attrs) {
 }
 setAttributes(but, {"type": "button", "id": "copierDeux"});
 }
-document.addEventListener('submit', dysfunctional);
+//document.addEventListener('submit', dysfunctional);
 
 var copyScribble = (transcribble) => {
   transcribble = document.querySelector('.transcribble');
@@ -437,7 +493,9 @@ document.addEventListener('submit', msgBox);
 document.addEventListener('submit', londonCalling);
 document.addEventListener('submit', nameSub);
 copierDeux.addEventListener('click', copyScribble)
+document.addEventListener('submit', numberSubs)
 document.addEventListener('submit', tooltips)
+
 
 /* var jenny = "812-867-5309";
 var tommy = new RegExp('[\(\)]|-', 'g');

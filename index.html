@@ -13,20 +13,28 @@
 
     <h1>Transcriber Aide</h1>
     <form>
+        
             <div>
-                <label for="name">
+                <div>
+                <label for="theNumbers">
+                    <span>Row Number</span>
+                    <input type="text" id="theNumbers" name="theNumbers" required="required">
+                    <span class="error"></span> 
+                </label>
+                </div>
+            <label for="name">
                 <span>Name</span>
                 <input type="text" id="name" name="name" required="required">
                 <span class="error"></span>
-                </label>
+            </label>
                 <div>
                 
-                        <div>
+                    <div>
                         <label for="phoney">
                         <span>Phone</span>
                         <input id="phoney" type="tel" required="required" >
                         <span class="error"></span>
-                    </label>
+                        </label>
                     </div>
                             <input type="checkbox" name="from" id="from" value="from">
                             <label>Called from another number?</label>
@@ -40,7 +48,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
             <!--<p>Hang Up?</p>-->
                 <label for="hangup">Hang Up?</label><input type="checkbox" name="hangup" id="hangup" value="hangup">
@@ -53,6 +60,7 @@
     </form>
 
     <div class="transcibed">
+        <div id="numberedCopy"></div>
         <div id="copyName"></div>
         <div id="copyPhoneOne"></div>
         <div id="copyMsg"></div>
