@@ -10,6 +10,12 @@ h1 {
     text-align: center;
 }
 
+#containerOne {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    /*grid-template-rows: 2fr;*/
+}
+
 .hide-checked {
     opacity: 1;
     max-height: 100px;
@@ -41,7 +47,6 @@ input[type="checkbox"]:checked ~ #where {
 .error {
     width  : 100%;
     padding: 0;
-
     font-size: 80%;
     color: white;
     background-color: #900;
@@ -69,20 +74,6 @@ button#copierDeux {
     margin: 1rem;
 }
 
-pre.previous {
-    display: inline-block;
-    font-size: 11pt;
-}
-
-
-/*span.copied:focus {
-    
-    
-    transition: ease-in-out .8s all;
-    opacity: 1;
-    z-index: 20;
-}*/
-
 button.tooltip {
     display: inline; 
     position:relative
@@ -107,7 +98,7 @@ button.tooltip:active::after {
     white-space: nowrap;
     z-index: 98;
     transition-duration: 5s;
-     transition-delay: 2s;
+    transition-delay: 2s;
     
    }
    
@@ -125,10 +116,38 @@ button.tooltip:active::after {
      transition-delay: 2s;
     }
 
+
+
 button#copierDeux {
     margin: 0 auto;
 }
 
+/* Using the points for units for the font size here because copy/pasting to Google Sheets seems to go better if you use the same font size that's being used in the document you are pasting to */
+
+pre.previous {
+    display: inline-block;
+    font-size: 11pt;
+}
+
+/* Similar deal to the one as above, but in this case it's an e-mail.*/
+
 p.transcribble {
     font-size: 11pt;
 }
+
+/*form {
+    display: flex;
+}*/
+
+.inputs {
+    margin: 0.5rem;
+}
+
+#where {
+    margin-top: 0.3rem;
+}
+
+div.transcribed button.tooltip {
+    margin: 0.5rem;
+}
+

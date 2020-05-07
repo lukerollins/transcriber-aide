@@ -18,8 +18,8 @@ let phoneProb = document.querySelector('#phoney + span.error')
 let offHookProb = document.querySelector('#you-not + span.error')
 const ree = new RegExp(/^(?:\(?([0-9]{3})\)?[-.*\s]?)?([0-9]{3})[-.*\s]?([0-9]{4})$/g);
 const meow = document.getElementById("meow");
-const digi = new RegExp(/\d+/);
-let theNumbers = document.getElementById('theNumbers');
+//const digit = new RegExp(/\d+/);
+let theNumbers = document.getElementById("theNumbers");
 let numberError = document.querySelector('#theNumbers + span.error')
 var transcribble
 var lou = /502/;
@@ -30,30 +30,39 @@ var tutone
 var mathis 
 var walter
 copierDeux = document.getElementById('copierDeux')
+
+
 var tooltips = () => {
 //e.preventDefault()
+
 var btns = document.querySelectorAll('button[type="button"]');
 for (var i = 0; i < btns.length; i++) {
-  btns[i].setAttribute('class', 'tooltip');
+  btns[i].classList.add('tooltip');
   btns[i].setAttribute('title', 'Copied');
 }
+
 }
+
 
 function setup() {
 let callMee = document.querySelectorAll('input[type="tel"]');
 const forms = document.getElementsByTagName('form');
-
+let digit = new RegExp(/\d+/);
 for(let c = 0; c < callMee.length; c++) {
   callMee[c].setAttribute('pattern', ree.source)
 }
 
-for(let n = 0; n < theNumbers. length; n++) {
-theNumbers[n].setAttribute('pattern', digi.source)
-}
+  //newFunction();
 
 for(let f = 0; f < forms.length; f++) {
   forms[f].setAttribute('novalidate', true);
 }
+theNumbers.setAttribute('pattern', digit.source);
+  /*function newFunction() {
+    for (let n = 0; n < theNumbers.length; n++) {
+      theNumbers[n].setAttribute('pattern', digit.source);
+    }
+  }*/
 }
 
 
@@ -69,7 +78,7 @@ let nameSub = (e) => {
     namedError.innerHTML = '';
     namedError.className = 'error'
     document.getElementById('copyName').innerHTML = '<span>Name:<pre id="naming" class="previous">' + named.value + '</pre></span>'
-    + '<button id="diddly" type="button">Copy</button>'
+    + '<button id="diddly" type="button" class="inputs">Copy</button>'
     var namedWerk = document.getElementById('diddly');
     var copiedName = () => {
       //ev.preventDefault();
@@ -85,32 +94,6 @@ let nameSub = (e) => {
     namedWerk.addEventListener('click', copiedName);
 }
   } 
-
- 
-/*
-Code to copy to clipboard....
-  var copyToClipboard = function(secretInfo) {
-  secretInfo.select();
-  document.execCommand('copy');
-  btnCopy.addEventListener('click', function(ev) {
-    copyToClipboard(secretInfo);
-  });
-}*/
-
-/*document.addEventListener('submit', (e) => {
-  e.preventDefault()
-  if(!named.validity.valid) {
-    namingError()
-  } else {
-    namedError.innerHTML = '';
-    namedError.className = 'error'
-    document.getElementById('copyName').innerHTML = "Name: " + named.value  + '<button id="diddly" type="button">Copy</button>'
-    var werk = document.getElementById('diddly');
-werk.addEventListener('click', (e) => {
-  console.log("I werk!")
-})
-  }
-})*/
 
 function namingError() {
   if (named.validity.valueMissing) {
@@ -133,7 +116,7 @@ let numberSubs = (e) => {
   } else {
     numberError.innerHTML = '';
     numberError.className = 'error'
-    document.getElementById('numberedCopy').innerHTML = '<span>Row Number: <pre id="numbering" class="previous">' + theNumbers.value + '</pre></span><button id="chalmers" type="button">Copy</button> /// <span>Subject: <pre id="subjective" class="previous">#' + theNumbers.value + '</pre></span><button id="skinner" type="button">Copy</button>'
+    document.getElementById('numberedCopy').innerHTML = '<span>Row Number: <pre id="numbering" class="previous">' + theNumbers.value + '</pre></span><button id="chalmers" type="button" class="inputs">Copy</button> /// <span>Subject: <pre id="subjective" class="previous">#' + theNumbers.value + '</pre></span><button id="skinner" type="button" class="inputs">Copy</button>'
     var chalmers = document.getElementById('chalmers');
     var skinner = document.getElementById('skinner');
     var copyNum = () => {
@@ -159,9 +142,6 @@ let numberSubs = (e) => {
     skinner.addEventListener('click', copySubject);
 }
   } 
-   
-  
-
 
 let talkTalk = (e) => {
   e.preventDefault()
@@ -174,55 +154,9 @@ let talkTalk = (e) => {
 }
 
 document.addEventListener('submit', talkTalk)
-/*document.addEventListener('submit', (e) => {
-  e.preventDefault()
 
-  if(!phoney.validity.valid) {
-    phoneyError()
-  } else {
-    phoneProb.innerHTML = '';
-    phoneProb.className = 'error'
-    blab()
-     
-  }
-})*/
-
-/*function daVille() {
-  var goodTime = phoney.value
-  var lou = /502/;
-  var tommy = /[\(\)]|\s|\-/g;  
-  tutone = goodTime.replace(tommy, "");
-  
-  
-   if(lou.test(tutone) == true) {
-    tutone = tutone.slice(3)
-   } else {
-      tutone
-   } 
-   
-}
-
-function call() {
-  
-  var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
-  var jenny
-  jenny = tutone.match(matchCar)
-  
-  if (jenny) {
-    mathis = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
-  } else {
-    null
-  }
-}*/
   function blob() {
     var bugSpray = off.value
-    //var lou = /502/;
-    //var tommy = /[\(\)]|\s|\-/g; 
-    //var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
-    //var jenny
-    //var tutone
-      
-   
     tutone = bugSpray.replace(tommy, "");
     if(lou.test(tutone) == true) {
       tutone = tutone.slice(3)
@@ -238,26 +172,6 @@ function call() {
     }
     blab(walter) 
     }
-
-/*document.addEventListener('submit', (e) => {
-  e.preventDefault()
-  if(another.checked == true && off.validity.valid) {
-    document.getElementById('copyPhoneTwo').innerHTML = " " + off.value + " call back number"
-  } else {
-    return null
-  }
-})*/
-
-/*document.addEventListener('submit', (e) => {
-  e.preventDefault()
-    if(!off.validity.valid) {
-      phoneMalfunction() 
-    } else {
-      offHookProb.innerHTML = '';
-      offHookProb.className = 'error'
-      
-    }
-})*/
 
 
 function phoneyError() {
@@ -286,11 +200,7 @@ function hungUp() {
 
 function messenger() {
   if (hangup.checked == true) {
-    /*document.getElementById("copyMsg").innerHTML = "Message: Hang Up" + '<button id="doodly" type="button">Copy</button>'
-    var doodly = document.getElementById('doodly');
-    doodly.addEventListener('click', () => {
-    console.log("I werk, as well!")})*/
-    document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">Hang Up</pre></span><button id="doodly" type="button">Copy</button>'
+    document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">Hang Up</pre></span><button id="doodly"type="button" class="inputs">Copy</button>'
     var msgWerk = document.getElementById('doodly');
     var copiedMsg = () => {
       
@@ -304,7 +214,7 @@ function messenger() {
     msgWerk.addEventListener('click', copiedMsg);
 } else {
   document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">' + fudge.value + '</pre></span>'
-  + '<button id="doodly" type="button">Copy</button>'
+  + '<button id="doodly" type="button" class="inputs">Copy</button>'
   var msgWerk = document.getElementById('doodly');
   var copiedMsg = (msging) => {
     
@@ -320,8 +230,6 @@ function messenger() {
   msgWerk.addEventListener('click', copiedMsg);
 }
 }
-
-
 
 let msgBox = (e) => {
   e.preventDefault()
@@ -388,7 +296,7 @@ function blab() {
   } 
 
   if(another.checked == true) {
-    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button">Copy</button>'
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button" class="inputs">Copy</button>'
     var riddly = document.getElementById('riddly');
     var copyPhoning = (phoning) => {
       var phoning = document.getElementById('phoning');
@@ -403,7 +311,7 @@ function blab() {
   
 
   } else {
-    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + '</pre></span>' + '<button id="riddly" type="button">Copy</button>'
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + '</pre></span>' + '<button id="riddly" type="button" class="inputs">Copy</button>'
     var riddly = document.getElementById('riddly');
     var copyPhoning = (phoning) => {
     var phoning = document.getElementById('phoning');
@@ -481,11 +389,7 @@ function clearTooltip(e) {
   e.currentTarget.setAttribute('class', 'btn');
   e.currentTarget.removeAttribute('title');
 }*/
-
-
-
-
-  
+ 
 setup()
 noWay.addEventListener('change', oogh);
 another.addEventListener('change', ugh);
@@ -495,108 +399,3 @@ document.addEventListener('submit', nameSub);
 copierDeux.addEventListener('click', copyScribble)
 document.addEventListener('submit', numberSubs)
 document.addEventListener('submit', tooltips)
-
-
-/* var jenny = "812-867-5309";
-var tommy = new RegExp('[\(\)]|-', 'g');
-
-jenny.replace(tommy, "") 
-
-round 2 
-
-var jenny = "(812) 867-5309";
-var tommy = new RegExp('[\(\)]|\\s|-', 'g');
-
-jenny.replace(tommy, "")
-
-*/
-
-/* var n = "1234567899";
-n.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"); */
-
-
-/*  Possible way to recombine number after checking it...
-
-function formatPhoneNumber(phoneNumberString) {
-  var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
-  var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
-  if (match) {
-    return '(' + match[1] + ') ' + match[2] + '-' + match[3]
-  }
-  return null
-}
-*/
-
-/*  Visual Studio Code is turning into my scratchpad ....
-var jenny = "(812) 867-5309";
-var tommy = new RegExp('[\(\)]|\\s|-', 'g');
-
-var tutone = jenny.replace(tommy, "");
-
-var goodTime = tutone.match(/^(\d{3})?(\d{3})(\d{4})$/)
-
-if (goodTime) {
-   goodTime[1] + '-' + goodTime[2] + '-' + goodTime[3]
-  }
-*/
-
-/* Mister Tutone, you got issues... 
-var jenny = "502-867-1805";
-var tommy = /[\(\)]|\\s|-/g;
-var ree = /^\d{7}(?:\d{3})?$/g;
-var tutone = jenny.replace(tommy, "");
-
-function check () {
-if(ree.test(tutone) == true) {
-  return "Got it!"
-} else {
- return "Nope!"
-}
-}
-function call() {
-var goodTime = tutone.match(/^(\d{3})?(\d{3})(\d{4})$/)
-
-if (goodTime) {
-   return goodTime[1] + '-' + goodTime[2] + '-' + goodTime[3]
-  } return null
-}
-call()
-*/
-
-/* 
-//var blank = document.querySelectorAll('[data-phone]')
-var bank = document.getElementsByClassName('require-active')
-
-show.forEach((bank) => {
-if (bank.checked != true) {
-bank.setAttribute('required', 'required')}
-else {
-bank.removeAttribute('required')}})
-*/
-/*  
-It never ends...how to remove the first three digits...
-var baloney = phoney.value.replace(tommy, "")
-var sammich = baloney.slice(3)
-sammich
-
-Trying to remove the 502. If any phone numbers have 502 as the area code, they are considered local and the 502 is omitted.
-
-var baloney = phoney.value.replace(tommy, "")
-var cheese = /502/
-function conjunc() {
-if (cheese.test(baloney) == true)
-  { return baloney.slice(3)}
-  else {
-    return baloney}
-
-}
-conjunc()
-
-var regex = /\d{5}/;
-element.setAttribute("pattern", regex.source);
-*/
-/*potential RegEx with and without area code ^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})$ */
-
-
-
-
