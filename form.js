@@ -77,7 +77,7 @@ let nameSub = (e) => {
   } else {
     namedError.innerHTML = '';
     namedError.className = 'error'
-    document.getElementById('copyName').innerHTML = '<span>Name:<pre id="naming" class="previous">' + named.value + '</pre></span>'
+    document.getElementById('copyName').innerHTML = '<span>Name: <pre id="naming" class="previous">' + named.value + '</pre></span>'
     + '<button id="diddly" type="button" class="inputs">Copy</button>'
     var namedWerk = document.getElementById('diddly');
     var copiedName = () => {
@@ -166,7 +166,7 @@ document.addEventListener('submit', talkTalk)
      jenny = tutone.match(matchCar)
     if (jenny[1] == undefined) {
       walter = jenny[2] + '-' + jenny[3]
-    } else if (jenny[1] == undefined) {
+    } else if (jenny[1] != undefined) {
         walter = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
       
     }

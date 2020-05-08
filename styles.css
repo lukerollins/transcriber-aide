@@ -10,17 +10,24 @@ h1 {
     text-align: center;
 }
 
+
 #containerOne {
     display: grid;
     grid-template-columns: repeat(2, 50%);
     /*grid-template-rows: 2fr;*/
+    margin: 1rem;
 }
 
 .hide-checked {
     opacity: 1;
-    max-height: 100px;
+    /*max-height: 100px;*/
     overflow: visible;
     /*display: none*/
+}
+
+textarea {
+    width: 70%;
+    height: 50%;
 }
 
 input[type="checkbox"]:checked ~ .hide-checked {
@@ -45,13 +52,12 @@ input[type="checkbox"]:checked ~ #where {
 }
 
 .error {
-    width  : 100%;
+    width: 100%;
     padding: 0;
     font-size: 80%;
     color: white;
     background-color: #900;
     border-radius: 0 0 5px 5px;
-
     box-sizing: border-box;
   }
 
@@ -64,9 +70,10 @@ input:invalid {
         background-color: #FDD; 
 }
 
+
 textarea:invalid {
     border-color: #900;
-        background-color: #FDD; 
+    background-color: #FDD; 
 }
 
 button#copierDeux {
@@ -99,7 +106,6 @@ button.tooltip:active::after {
     z-index: 98;
     transition-duration: 5s;
     transition-delay: 2s;
-    
    }
    
    button.tooltip:active::before {
@@ -127,6 +133,7 @@ button#copierDeux {
 pre.previous {
     display: inline-block;
     font-size: 11pt;
+    white-space: pre-wrap;
 }
 
 /* Similar deal to the one as above, but in this case it's an e-mail.*/
@@ -149,5 +156,10 @@ p.transcribble {
 
 div.transcribed button.tooltip {
     margin: 0.5rem;
+}
+
+.transcribe {
+    margin: 1rem 1rem 1rem 1.5rem;
+    
 }
 
