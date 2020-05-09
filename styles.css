@@ -59,15 +59,15 @@ input[type="checkbox"]:checked ~ #where {
     background-color: #900;
     border-radius: 0 0 5px 5px;
     box-sizing: border-box;
-  }
+}
 
-  .error.active {
-    padding: 0.3em;
-  }
+.error.active {
+padding: 0.3em;
+}
 
 input:invalid {
     border-color: #900;
-        background-color: #FDD; 
+    background-color: #FDD; 
 }
 
 
@@ -85,8 +85,7 @@ button.tooltip {
     display: inline; 
     position:relative
 }
-button.tooltip:hover 
-{
+button.tooltip:hover {
     text-decoration:none
 }
 
@@ -106,21 +105,21 @@ button.tooltip:active::after {
     z-index: 98;
     transition-duration: 5s;
     transition-delay: 2s;
-   }
+}
    
-   button.tooltip:active::before {
-     border:solid;
-     border-color:#111 transparent;
-     border-width:6px 6px 0 6px;
-     bottom:12px;
-     content:"";
-     display:block;
-     left:75%;
-     position:absolute;
-     z-index:99;
-     transition-duration: 5s;
-     transition-delay: 2s;
-    }
+button.tooltip:active::before {
+    border:solid;
+    border-color:#111 transparent;
+    border-width:6px 6px 0 6px;
+    bottom:12px;
+    content:"";
+    display:block;
+    left:75%;
+    position:absolute;
+    z-index:99;
+    transition-duration: 5s;
+    transition-delay: 2s;
+}
 
 
 

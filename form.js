@@ -39,8 +39,7 @@ var btns = document.querySelectorAll('button[type="button"]');
 for (var i = 0; i < btns.length; i++) {
   btns[i].classList.add('tooltip');
   btns[i].setAttribute('title', 'Copied');
-}
-
+  }
 }
 
 
@@ -92,8 +91,8 @@ let nameSub = (e) => {
       window.getSelection().removeAllRanges();
     }
     namedWerk.addEventListener('click', copiedName);
-}
   } 
+} 
 
 function namingError() {
   if (named.validity.valueMissing) {
@@ -140,8 +139,8 @@ let numberSubs = (e) => {
         window.getSelection().removeAllRanges();
     }
     skinner.addEventListener('click', copySubject);
-}
-  } 
+  }
+} 
 
 let talkTalk = (e) => {
   e.preventDefault()
@@ -155,27 +154,26 @@ let talkTalk = (e) => {
 
 document.addEventListener('submit', talkTalk)
 
-  function blob() {
-    var bugSpray = off.value
-    tutone = bugSpray.replace(tommy, "");
-    if(lou.test(tutone) == true) {
-      tutone = tutone.slice(3)
-     } else {
-        tutone
-     }
-     jenny = tutone.match(matchCar)
-    if (jenny[1] == undefined) {
-      walter = jenny[2] + '-' + jenny[3]
-    } else if (jenny[1] != undefined) {
-        walter = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
-      
+function blob() {
+  var bugSpray = off.value
+  tutone = bugSpray.replace(tommy, "");
+  if(lou.test(tutone) == true) {
+    tutone = tutone.slice(3)
+    } else {
+      tutone
     }
-    blab(walter) 
-    }
+    jenny = tutone.match(matchCar)
+  if (jenny[1] == undefined) {
+    walter = jenny[2] + '-' + jenny[3]
+  } else if (jenny[1] != undefined) {
+      walter = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
+    
+  }
+  blab(walter) 
+}
 
 
 function phoneyError() {
-  
   if (phoney.validity.valueMissing) {
     phoneProb.textContent = 'Need a number'
   } else if(phoney.validity.patternMismatch) {
@@ -184,13 +182,12 @@ function phoneyError() {
 }
 
 function phoneMalfunction() {
-  
-    if (off.validity.valueMissing) {
-      offHookProb.textContent = 'Need a number'  
-    } else if(off.validity.patternMismatch) {
-      offHookProb.textContent = "Not that number"
-    }
+  if (off.validity.valueMissing) {
+    offHookProb.textContent = 'Need a number'  
+  } else if(off.validity.patternMismatch) {
+    offHookProb.textContent = "Not that number"
   }
+}
 
 function hungUp() {
   if (fudge.validity.valueMissing) {
@@ -228,7 +225,7 @@ function messenger() {
       window.getSelection().removeAllRanges();
   }
   msgWerk.addEventListener('click', copiedMsg);
-}
+  }
 }
 
 let msgBox = (e) => {
@@ -244,26 +241,24 @@ let msgBox = (e) => {
 }
 
 function ugh() {
+  if(another.checked != true) {
+      console.log('unchecked')
+      off.removeAttribute('required')
+  } else {
+      console.log('checked')
+      off.setAttribute('required', 'required')
+  }
+}
     
-    if(another.checked != true) {
-       console.log('unchecked')
-       off.removeAttribute('required')
-    } else {
-        console.log('checked')
-        off.setAttribute('required', 'required')
-    }
-    }
-    
-    function oogh() {
-        
-        if(noWay.checked == true) {
-            console.log('checked_another')
-            fudge.removeAttribute('required')
-        } else {
-            fudge.setAttribute('required', 'required')
-            console.log('no check')
-        } 
-        }
+function oogh() {   
+  if(noWay.checked == true) {
+      console.log('checked_another')
+      fudge.removeAttribute('required')
+  } else {
+      fudge.setAttribute('required', 'required')
+      console.log('no check')
+  } 
+}
 
 let londonCalling = (e) => {
   e.preventDefault()
@@ -279,8 +274,6 @@ let londonCalling = (e) => {
 
 function blab() {
   var goodTime = phoney.value
-   
- 
   tutone = goodTime.replace(tommy, "");
   if(lou.test(tutone) == true) {
     tutone = tutone.slice(3)
@@ -376,9 +369,6 @@ var copyScribble = (transcribble) => {
   document.execCommand("copy");
   window.getSelection().removeAllRanges();
   console.log("Pressed");
-  
-
-  //copyScribble();
 }
 /*function showTooltip(elem, msg) {
   elem.setAttribute('class', 'tooltip');
