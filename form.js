@@ -77,7 +77,7 @@ let nameSub = (e) => {
     namedError.innerHTML = '';
     namedError.className = 'error'
     document.getElementById('copyName').innerHTML = '<span>Name: <pre id="naming" class="previous">' + named.value + '</pre></span>'
-    + '<button id="diddly" type="button" class="inputs">Copy</button>'
+    + '<button id="diddly" type="button" class="inputs tempTwo">Copy</button>'
     var namedWerk = document.getElementById('diddly');
     var copiedName = () => {
       //ev.preventDefault();
@@ -115,7 +115,7 @@ let numberSubs = (e) => {
   } else {
     numberError.innerHTML = '';
     numberError.className = 'error'
-    document.getElementById('numberedCopy').innerHTML = '<span>Row Number: <pre id="numbering" class="previous">' + theNumbers.value + '</pre></span><button id="chalmers" type="button" class="inputs">Copy</button> /// <span>Subject: <pre id="subjective" class="previous">#' + theNumbers.value + '</pre></span><button id="skinner" type="button" class="inputs">Copy</button>'
+    document.getElementById('numberedCopy').innerHTML = '<span>Row Number: <pre id="numbering" class="previous">' + theNumbers.value + '</pre></span><button id="chalmers" type="button" class="inputs tempTwo">Copy</button>   <span>Subject: <pre id="subjective" class="previous">#' + theNumbers.value + '</pre></span><button id="skinner" type="button" class="inputs tempTwo">Copy</button>'
     var chalmers = document.getElementById('chalmers');
     var skinner = document.getElementById('skinner');
     var copyNum = () => {
@@ -197,7 +197,7 @@ function hungUp() {
 
 function messenger() {
   if (hangup.checked == true) {
-    document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">Hang Up</pre></span><button id="doodly"type="button" class="inputs">Copy</button>'
+    document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">Hang Up</pre></span><button id="doodly" type="button" class="inputs tempTwo">Copy</button>'
     var msgWerk = document.getElementById('doodly');
     var copiedMsg = () => {
       
@@ -211,7 +211,7 @@ function messenger() {
     msgWerk.addEventListener('click', copiedMsg);
 } else {
   document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">' + fudge.value + '</pre></span>'
-  + '<button id="doodly" type="button" class="inputs">Copy</button>'
+  + '<button id="doodly" type="button" class="inputs tempTwo">Copy</button>'
   var msgWerk = document.getElementById('doodly');
   var copiedMsg = (msging) => {
     
@@ -289,7 +289,7 @@ function blab() {
   } 
 
   if(another.checked == true) {
-    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button" class="inputs">Copy</button>'
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button" class="inputs tempTwo">Copy</button>'
     var riddly = document.getElementById('riddly');
     var copyPhoning = (phoning) => {
       var phoning = document.getElementById('phoning');
@@ -304,7 +304,7 @@ function blab() {
   
 
   } else {
-    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + '</pre></span>' + '<button id="riddly" type="button" class="inputs">Copy</button>'
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + '</pre></span>' + '<button id="riddly" type="button" class="inputs tempTwo">Copy</button>'
     var riddly = document.getElementById('riddly');
     var copyPhoning = (phoning) => {
     var phoning = document.getElementById('phoning');
@@ -337,8 +337,9 @@ function blab() {
     };
     
 }
-  var dysfunctional = (transcribe) => { 
-   
+  var dysfunctional = (transcribe) => {
+  transcribble = document.querySelector('.transcribble') 
+  transcribble.style.display = 'block'; 
   var transcribe = document.querySelector('.transcribe')
   //var hOne = document.createElement('h1')
   var but = document.createElement('button')
