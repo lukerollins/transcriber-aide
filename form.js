@@ -16,7 +16,7 @@ let off = document.getElementById("you-not");
 var phoney = document.getElementById('phoney');
 let phoneProb = document.querySelector('#phoney + span.error')
 let offHookProb = document.querySelector('#you-not + span.error')
-const ree = new RegExp(/^(?:\(?([0-9]{3})\)?[-.*\s]?)?([0-9]{3})[-.*\s]?([0-9]{4})$/g);
+
 const meow = document.getElementById("meow");
 //const digit = new RegExp(/\d+/);
 let theNumbers = document.getElementById("theNumbers");
@@ -47,6 +47,7 @@ function setup() {
 let callMee = document.querySelectorAll('input[type="tel"]');
 const forms = document.getElementsByTagName('form');
 let digit = new RegExp(/\d+/);
+const ree = new RegExp(/^(?:\(?([0-9]{3})\)?[-.*\s]?)?([0-9]{3})[-.*\s]?([0-9]{4})$/g);
 for(let c = 0; c < callMee.length; c++) {
   callMee[c].setAttribute('pattern', ree.source)
 }
@@ -69,7 +70,7 @@ let erroneous = (field) => {
   if (from.checked != true || hangup.checked != true || field.type === '' ) return;
 }
 
-let nameSub = (e) => {
+function nameSub(e) {
   e.preventDefault()
   if(!named.validity.valid) {
     namingError()
@@ -79,7 +80,7 @@ let nameSub = (e) => {
     document.getElementById('copyName').innerHTML = '<span>Name: <pre id="naming" class="previous">' + named.value + '</pre></span>'
     + '<button id="diddly" type="button" class="inputs tempTwo">Copy</button>'
     var namedWerk = document.getElementById('diddly');
-    var copiedName = () => {
+    function copiedName() {
       //ev.preventDefault();
       
       var naming = document.getElementById('naming');
@@ -213,7 +214,7 @@ function messenger() {
   document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">' + fudge.value + '</pre></span>'
   + '<button id="doodly" type="button" class="inputs tempTwo">Copy</button>'
   var msgWerk = document.getElementById('doodly');
-  var copiedMsg = (msging) => {
+  function copiedMsg(msging) {
     
       var msging = document.getElementById('msging');
       
