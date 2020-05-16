@@ -79,20 +79,33 @@ let nameSub = (e) => {
     document.getElementById('copyName').innerHTML = '<span>Name: <pre id="naming" class="previous">' + named.value + '</pre></span>'
     + '<button id="diddly" type="button" class="inputs tempTwo">Copy</button>'
     var namedWerk = document.getElementById('diddly');
-    var copiedName = () => {
+    function copiedName() {
       //ev.preventDefault();
-      
-      var naming = document.getElementById('naming');
+      if (!navigator.clipboard) {
+        // Clipboard API not available
+        console.log("F Bomb!")
+        return
+      }
+      const kinkos = document.getElementById('naming').innerText
+      //let text = kinkos.innerText
+      try {
+        navigator.clipboard.writeText(kinkos)
+       console.log('Copied to clipboard', kinkos)
+      } catch (err) {
+        console.error('Failed to copy!', err)
+      }
+    }
+      /*var naming = document.getElementById('naming');
       var range = document.createRange();
       range.selectNode(naming);
       window.getSelection().removeAllRanges(); // clear current selection
       window.getSelection().addRange(range); // to select text
       document.execCommand("copy");
-      window.getSelection().removeAllRanges();
+      window.getSelection().removeAllRanges();*/
     }
     namedWerk.addEventListener('click', copiedName);
   } 
-} 
+ 
 
 function namingError() {
   if (named.validity.valueMissing) {
@@ -118,25 +131,38 @@ let numberSubs = (e) => {
     document.getElementById('numberedCopy').innerHTML = '<span>Row Number: <pre id="numbering" class="previous">' + theNumbers.value + '</pre></span><button id="chalmers" type="button" class="inputs tempTwo">Copy</button>   <span>Subject: <pre id="subjective" class="previous">#' + theNumbers.value + '</pre></span><button id="skinner" type="button" class="inputs tempTwo">Copy</button>'
     var chalmers = document.getElementById('chalmers');
     var skinner = document.getElementById('skinner');
-    var copyNum = () => {
+    function copyNum() {
       //ev.preventDefault();
-      var numbering = document.getElementById('numbering');
-      var range = document.createRange();
-      range.selectNode(numbering);
-      window.getSelection().removeAllRanges(); // clear current selection
-      window.getSelection().addRange(range); // to select text
-      document.execCommand("copy");
-      window.getSelection().removeAllRanges();
+      if (!navigator.clipboard) {
+        // Clipboard API not available
+        console.log("F Bomb!")
+        return
+      }
+      const kinkos = document.getElementById('numbering').innerText
+      //let text = kinkos.innerText
+      try {
+        navigator.clipboard.writeText(kinkos)
+       console.log('Copied to clipboard', kinkos)
+      } catch (err) {
+        console.error('Failed to copy!', err)
+      }
     }
     chalmers.addEventListener('click', copyNum);
-    var copySubject = () => {
-      var subjective = document.getElementById('subjective');
-      var range = document.createRange();
-        range.selectNode(subjective);
-        window.getSelection().removeAllRanges(); // clear current selection
-        window.getSelection().addRange(range); // to select text
-        document.execCommand("copy");
-        window.getSelection().removeAllRanges();
+    function copySubject() {
+      //ev.preventDefault();
+      if (!navigator.clipboard) {
+        // Clipboard API not available
+        console.log("F Bomb!")
+        return
+      }
+      const kinkos = document.getElementById('subjective').innerText
+      //let text = kinkos.innerText
+      try {
+        navigator.clipboard.writeText(kinkos)
+       console.log('Copied to clipboard', kinkos)
+      } catch (err) {
+        console.error('Failed to copy!', err)
+      }
     }
     skinner.addEventListener('click', copySubject);
   }
@@ -199,30 +225,44 @@ function messenger() {
   if (hangup.checked == true) {
     document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">Hang Up</pre></span><button id="doodly" type="button" class="inputs tempTwo">Copy</button>'
     var msgWerk = document.getElementById('doodly');
-    var copiedMsg = () => {
+    function copiedMsg(){
       
-      var range = document.createRange();
-      range.selectNode(msging);
-      window.getSelection().removeAllRanges(); // clear current selection
-      window.getSelection().addRange(range); // to select text
-      document.execCommand("copy");
-      window.getSelection().removeAllRanges();
+      //ev.preventDefault();
+      if (!navigator.clipboard) {
+        // Clipboard API not available
+        console.log("F Bomb!")
+        return
+      }
+      const kinkos = document.getElementById('msging').innerText
+      //let text = kinkos.innerText
+      try {
+        navigator.clipboard.writeText(kinkos)
+       console.log('Copied to clipboard', kinkos)
+      } catch (err) {
+        console.error('Failed to copy!', err)
+      }
     }
     msgWerk.addEventListener('click', copiedMsg);
 } else {
   document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">' + fudge.value + '</pre></span>'
   + '<button id="doodly" type="button" class="inputs tempTwo">Copy</button>'
   var msgWerk = document.getElementById('doodly');
-  var copiedMsg = (msging) => {
-    
-      var msging = document.getElementById('msging');
+  function copiedMsg(){
       
-      var range = document.createRange();
-      range.selectNode(msging);
-      window.getSelection().removeAllRanges(); // clear current selection
-      window.getSelection().addRange(range); // to select text
-      document.execCommand("copy");
-      window.getSelection().removeAllRanges();
+    //ev.preventDefault();
+    if (!navigator.clipboard) {
+      // Clipboard API not available
+      console.log("F Bomb!")
+      return
+    }
+    const kinkos = document.getElementById('msging').innerText
+    //let text = kinkos.innerText
+    try {
+      navigator.clipboard.writeText(kinkos)
+     console.log('Copied to clipboard', kinkos)
+    } catch (err) {
+      console.error('Failed to copy!', err)
+    }
   }
   msgWerk.addEventListener('click', copiedMsg);
   }
@@ -291,14 +331,20 @@ function blab() {
   if(another.checked == true) {
     document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button" class="inputs tempTwo">Copy</button>'
     var riddly = document.getElementById('riddly');
-    var copyPhoning = (phoning) => {
-      var phoning = document.getElementById('phoning');
-      var range = document.createRange();
-      range.selectNode(phoning);
-      window.getSelection().removeAllRanges(); // clear current selection
-      window.getSelection().addRange(range); // to select text
-      document.execCommand("copy");
-      window.getSelection().removeAllRanges();
+    function copyPhoning() {
+      if (!navigator.clipboard) {
+        // Clipboard API not available
+        console.log("F Bomb!")
+        return
+      }
+      const kinkos = document.getElementById('phoning').innerText
+      //let text = kinkos.innerText
+      try {
+       navigator.clipboard.writeText(kinkos)
+       console.log('Copied to clipboard', kinkos)
+      } catch (err) {
+        console.error('Failed to copy!', err)
+      }
     }
     riddly.addEventListener('click', copyPhoning) 
   
@@ -306,17 +352,22 @@ function blab() {
   } else {
     document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + '</pre></span>' + '<button id="riddly" type="button" class="inputs tempTwo">Copy</button>'
     var riddly = document.getElementById('riddly');
-    var copyPhoning = (phoning) => {
-    var phoning = document.getElementById('phoning');
-    var range = document.createRange();
-    range.selectNode(phoning);
-    window.getSelection().removeAllRanges(); // clear current selection
-    window.getSelection().addRange(range); // to select text
-    document.execCommand("copy");
-    window.getSelection().removeAllRanges();
-    
+    function copyPhoning() {
+      if (!navigator.clipboard) {
+        // Clipboard API not available
+        console.log("F Bomb!")
+        return
+      }
+      const kinkos = document.getElementById('phoning').innerText
+      //let text = kinkos.innerText
+      try {
+       navigator.clipboard.writeText(kinkos)
+       console.log('Copied to clipboard', kinkos)
+      } catch (err) {
+        console.error('Failed to copy!', err)
+      }
     }
-    riddly.addEventListener('click', copyPhoning) 
+    riddly.addEventListener('click', copyPhoning)  
   }
   
   
@@ -358,19 +409,22 @@ setAttributes(but, {"type": "button", "id": "copierDeux"});
 }
 //document.addEventListener('submit', dysfunctional);
 
-var copyScribble = (transcribble) => {
+function copyScribble() {
   transcribble = document.querySelector('.transcribble');
-  
- 
-  
-  var range = document.createRange();
-  range.selectNode(transcribble);
-  window.getSelection().removeAllRanges(); // clear current selection
-  window.getSelection().addRange(range); // to select text
-  document.execCommand("copy");
-  window.getSelection().removeAllRanges();
-  console.log("Pressed");
-}
+    if (!navigator.clipboard) {
+      // Clipboard API not available
+      console.log("F Bomb!")
+      return
+    }
+    const kinkos = transcribble.innerText
+    //let text = kinkos.innerText
+    try {
+     navigator.clipboard.writeText(kinkos)
+     console.log('Copied to clipboard', kinkos)
+    } catch (err) {
+      console.error('Failed to copy!', err)
+    } 
+  }
 /*function showTooltip(elem, msg) {
   elem.setAttribute('class', 'tooltip');
   elem.setAttribute('title', msg);
