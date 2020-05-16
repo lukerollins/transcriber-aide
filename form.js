@@ -77,23 +77,27 @@ function nameSub(e) {
   } else {
     namedError.innerHTML = '';
     namedError.className = 'error'
-    document.getElementById('copyName').innerHTML = '<span>Name: <pre id="naming" class="previous">' + named.value + '</pre></span>'
+    document.getElementById('copyName').innerHTML = '<span>Name: <pre data-copier="name" id="preOne" class="previous">' + named.value + '</pre></span>'
     + '<button id="diddly" type="button" class="inputs tempTwo">Copy</button>'
     var namedWerk = document.getElementById('diddly');
-    function copiedName() {
-      //ev.preventDefault();
-      
-      var naming = document.getElementById('naming');
-      var range = document.createRange();
-      range.selectNode(naming);
-      window.getSelection().removeAllRanges(); // clear current selection
-      window.getSelection().addRange(range); // to select text
-      document.execCommand("copy");
-      window.getSelection().removeAllRanges();
-    }
     namedWerk.addEventListener('click', copiedName);
-  } 
 } 
+
+
+} 
+
+function copiedName() {
+  //ev.preventDefault();
+  var pre = document.querySelector('#preOne')
+  //var naming = pre.dataset.copier;
+  var range = document.createRange();
+  range.selectNode(pre);
+  window.getSelection().removeAllRanges(); // clear current selection
+  window.getSelection().addRange(range); // to select text
+  document.execCommand("copy");
+  window.getSelection().removeAllRanges();
+}
+
 
 function namingError() {
   if (named.validity.valueMissing) {
