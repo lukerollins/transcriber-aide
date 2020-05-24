@@ -102,35 +102,6 @@ function nameSub(e) {
     + '<button id="diddly" type="button" class="inputs tempTwo">Copy</button>'
     
     var namedWerk = document.getElementById('diddly');
-<<<<<<< HEAD
-    function copiedName() {
-      //ev.preventDefault();
-      if (!navigator.clipboard) {
-        // Clipboard API not available
-        console.log("F Bomb!")
-        return
-      }
-      const kinkos = document.getElementById('naming').innerText
-      //let text = kinkos.innerText
-      try {
-        navigator.clipboard.writeText(kinkos)
-       console.log('Copied to clipboard', kinkos)
-      } catch (err) {
-        console.error('Failed to copy!', err)
-      }
-    }
-      /*var naming = document.getElementById('naming');
-      var range = document.createRange();
-      range.selectNode(naming);
-      window.getSelection().removeAllRanges(); // clear current selection
-      window.getSelection().addRange(range); // to select text
-      document.execCommand("copy");
-      window.getSelection().removeAllRanges();*/
-    }
-    namedWerk.addEventListener('click', copiedName);
-  } 
- 
-=======
     
 } 
 namedWerk.addEventListener('click', (e) => {
@@ -139,7 +110,6 @@ namedWerk.addEventListener('click', (e) => {
 var namer = document.querySelector('#preOne');
 //copiedName(e, namer)
 } 
->>>>>>> DRYer_JS
 
 
 function namingError() {
@@ -168,42 +138,6 @@ let numberSubs = (e) => {
     document.getElementById('numberedCopy').innerHTML = '<span>Row Number: <pre data-copier="numerals" id="numbering" class="previous">' + theNumbers.value + '</pre></span><button id="chalmers" type="button" class="inputs tempTwo">Copy</button>   <span>Subject: <pre id="subjective" class="previous">#' + theNumbers.value + '</pre></span><button id="skinner" type="button" class="inputs tempTwo">Copy</button>'
     var chalmers = document.getElementById('chalmers');
     var skinner = document.getElementById('skinner');
-<<<<<<< HEAD
-    function copyNum() {
-      //ev.preventDefault();
-      if (!navigator.clipboard) {
-        // Clipboard API not available
-        console.log("F Bomb!")
-        return
-      }
-      const kinkos = document.getElementById('numbering').innerText
-      //let text = kinkos.innerText
-      try {
-        navigator.clipboard.writeText(kinkos)
-       console.log('Copied to clipboard', kinkos)
-      } catch (err) {
-        console.error('Failed to copy!', err)
-      }
-    }
-    chalmers.addEventListener('click', copyNum);
-    function copySubject() {
-      //ev.preventDefault();
-      if (!navigator.clipboard) {
-        // Clipboard API not available
-        console.log("F Bomb!")
-        return
-      }
-      const kinkos = document.getElementById('subjective').innerText
-      //let text = kinkos.innerText
-      try {
-        navigator.clipboard.writeText(kinkos)
-       console.log('Copied to clipboard', kinkos)
-      } catch (err) {
-        console.error('Failed to copy!', err)
-      }
-    }
-    skinner.addEventListener('click', copySubject);
-=======
     skinner.addEventListener('click', (e) =>{
       e.preventDefault()
       var subjective = document.getElementById('subjective')
@@ -212,7 +146,6 @@ let numberSubs = (e) => {
       e.preventDefault()
       var numbering = document.getElementById('numbering')
       copiedName(numbering)});
->>>>>>> DRYer_JS
   }
 } 
 
@@ -272,52 +205,11 @@ function hungUp() {
 function messenger() {
   if (hangup.checked == true) {
     document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">Hang Up</pre></span><button id="doodly" type="button" class="inputs tempTwo">Copy</button>'
-<<<<<<< HEAD
-    var msgWerk = document.getElementById('doodly');
-    function copiedMsg(){
-      
-      //ev.preventDefault();
-      if (!navigator.clipboard) {
-        // Clipboard API not available
-        console.log("F Bomb!")
-        return
-      }
-      const kinkos = document.getElementById('msging').innerText
-      //let text = kinkos.innerText
-      try {
-        navigator.clipboard.writeText(kinkos)
-       console.log('Copied to clipboard', kinkos)
-      } catch (err) {
-        console.error('Failed to copy!', err)
-      }
-    }
-    msgWerk.addEventListener('click', copiedMsg);
-=======
     var msgWerk = document.getElementById('doodly')
->>>>>>> DRYer_JS
 } else {
   document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">' + fudge.value + '</pre></span>'
   + '<button id="doodly" type="button" class="inputs tempTwo">Copy</button>'
   var msgWerk = document.getElementById('doodly');
-<<<<<<< HEAD
-  function copiedMsg(){
-      
-    //ev.preventDefault();
-    if (!navigator.clipboard) {
-      // Clipboard API not available
-      console.log("F Bomb!")
-      return
-    }
-    const kinkos = document.getElementById('msging').innerText
-    //let text = kinkos.innerText
-    try {
-      navigator.clipboard.writeText(kinkos)
-     console.log('Copied to clipboard', kinkos)
-    } catch (err) {
-      console.error('Failed to copy!', err)
-    }
-=======
->>>>>>> DRYer_JS
   }
   msgWerk.addEventListener('click', (e) => {
     e.preventDefault()
@@ -391,46 +283,6 @@ function blab() {
   if(another.checked == true) {
     document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button" class="inputs tempTwo">Copy</button>'
     var riddly = document.getElementById('riddly');
-<<<<<<< HEAD
-    function copyPhoning() {
-      if (!navigator.clipboard) {
-        // Clipboard API not available
-        console.log("F Bomb!")
-        return
-      }
-      const kinkos = document.getElementById('phoning').innerText
-      //let text = kinkos.innerText
-      try {
-       navigator.clipboard.writeText(kinkos)
-       console.log('Copied to clipboard', kinkos)
-      } catch (err) {
-        console.error('Failed to copy!', err)
-      }
-    }
-    riddly.addEventListener('click', copyPhoning) 
-  
-
-  } else {
-    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + '</pre></span>' + '<button id="riddly" type="button" class="inputs tempTwo">Copy</button>'
-    var riddly = document.getElementById('riddly');
-    function copyPhoning() {
-      if (!navigator.clipboard) {
-        // Clipboard API not available
-        console.log("F Bomb!")
-        return
-      }
-      const kinkos = document.getElementById('phoning').innerText
-      //let text = kinkos.innerText
-      try {
-       navigator.clipboard.writeText(kinkos)
-       console.log('Copied to clipboard', kinkos)
-      } catch (err) {
-        console.error('Failed to copy!', err)
-      }
-    }
-    riddly.addEventListener('click', copyPhoning)  
-  }
-=======
   } else {
     document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + '</pre></span>' + '<button id="riddly" type="button" class="inputs tempTwo">Copy</button>'
     var riddly = document.getElementById('riddly');
@@ -441,7 +293,6 @@ function blab() {
       copiedName(phoning)}) 
 
   
->>>>>>> DRYer_JS
   
   
   
