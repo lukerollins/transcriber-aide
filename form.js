@@ -7,7 +7,7 @@ let named = document.getElementById("name");
 let namedError = document.querySelector("#name + span.error");
 let another = document.querySelector('input[value="from"]');
 let from = document.getElementById('from');
-let checker = document.getElementsByClassName("require-active");
+//let checker = document.getElementsByClassName("require-active");
 let fudge = document.getElementById("hook");
 let brokenHeart = document.querySelector('#hook + span.error')
 let noWay = document.querySelector('input[value="hangup"]');
@@ -17,7 +17,7 @@ var phoney = document.getElementById('phoney');
 let phoneProb = document.querySelector('#phoney + span.error')
 let offHookProb = document.querySelector('#you-not + span.error')
 
-const meow = document.getElementById("meow");
+//const meow = document.getElementById("meow");
 //const digit = new RegExp(/\d+/);
 let theNumbers = document.getElementById("theNumbers");
 let numberError = document.querySelector('#theNumbers + span.error')
@@ -30,9 +30,10 @@ var tutone
 var mathis 
 var walter
 copierDeux = document.getElementById('copierDeux')
+//var copied = document.querySelectorAll('[data-copier]')
 
 
-var tooltips = () => {
+function tooltips() {
 //e.preventDefault()
 
 var btns = document.querySelectorAll('button[type="button"]');
@@ -65,9 +66,29 @@ theNumbers.setAttribute('pattern', digit.source);
   }*/
 }
 
-
-let erroneous = (field) => {
+function erroneous(field) {
   if (from.checked != true || hangup.checked != true || field.type === '' ) return;
+}
+
+
+
+
+function copiedName(id) {
+  
+  //var zap = id.innerText
+  
+  if (!navigator.clipboard) {
+    // Clipboard API not available
+    console.log("F Bomb!")
+    return
+  }
+  const kinkos = id.innerText
+  try {
+    navigator.clipboard.writeText(kinkos)
+   console.log('Copied to clipboard', kinkos)
+  } catch (err) {
+    console.error('Failed to copy!', err)
+  }
 }
 
 function nameSub(e) {
@@ -79,24 +100,16 @@ function nameSub(e) {
     namedError.className = 'error'
     document.getElementById('copyName').innerHTML = '<span>Name: <pre data-copier="name" id="preOne" class="previous">' + named.value + '</pre></span>'
     + '<button id="diddly" type="button" class="inputs tempTwo">Copy</button>'
+    
     var namedWerk = document.getElementById('diddly');
-    namedWerk.addEventListener('click', copiedName);
+    
 } 
-
-
+namedWerk.addEventListener('click', (e) => {
+  e.preventDefault()
+  copiedName(namer)});
+var namer = document.querySelector('#preOne');
+//copiedName(e, namer)
 } 
-
-function copiedName() {
-  //ev.preventDefault();
-  var pre = document.querySelector('#preOne')
-  //var naming = pre.dataset.copier;
-  var range = document.createRange();
-  range.selectNode(pre);
-  window.getSelection().removeAllRanges(); // clear current selection
-  window.getSelection().addRange(range); // to select text
-  document.execCommand("copy");
-  window.getSelection().removeAllRanges();
-}
 
 
 function namingError() {
@@ -113,6 +126,8 @@ function numeralError() {
   }
 }
 
+
+
 let numberSubs = (e) => {
   e.preventDefault()
   if (!theNumbers.validity.valid) {
@@ -120,30 +135,17 @@ let numberSubs = (e) => {
   } else {
     numberError.innerHTML = '';
     numberError.className = 'error'
-    document.getElementById('numberedCopy').innerHTML = '<span>Row Number: <pre id="numbering" class="previous">' + theNumbers.value + '</pre></span><button id="chalmers" type="button" class="inputs tempTwo">Copy</button>   <span>Subject: <pre id="subjective" class="previous">#' + theNumbers.value + '</pre></span><button id="skinner" type="button" class="inputs tempTwo">Copy</button>'
+    document.getElementById('numberedCopy').innerHTML = '<span>Row Number: <pre data-copier="numerals" id="numbering" class="previous">' + theNumbers.value + '</pre></span><button id="chalmers" type="button" class="inputs tempTwo">Copy</button>   <span>Subject: <pre id="subjective" class="previous">#' + theNumbers.value + '</pre></span><button id="skinner" type="button" class="inputs tempTwo">Copy</button>'
     var chalmers = document.getElementById('chalmers');
     var skinner = document.getElementById('skinner');
-    var copyNum = () => {
-      //ev.preventDefault();
-      var numbering = document.getElementById('numbering');
-      var range = document.createRange();
-      range.selectNode(numbering);
-      window.getSelection().removeAllRanges(); // clear current selection
-      window.getSelection().addRange(range); // to select text
-      document.execCommand("copy");
-      window.getSelection().removeAllRanges();
-    }
-    chalmers.addEventListener('click', copyNum);
-    var copySubject = () => {
-      var subjective = document.getElementById('subjective');
-      var range = document.createRange();
-        range.selectNode(subjective);
-        window.getSelection().removeAllRanges(); // clear current selection
-        window.getSelection().addRange(range); // to select text
-        document.execCommand("copy");
-        window.getSelection().removeAllRanges();
-    }
-    skinner.addEventListener('click', copySubject);
+    skinner.addEventListener('click', (e) =>{
+      e.preventDefault()
+      var subjective = document.getElementById('subjective')
+      copiedName(subjective)});
+    chalmers.addEventListener('click', (e) =>{
+      e.preventDefault()
+      var numbering = document.getElementById('numbering')
+      copiedName(numbering)});
   }
 } 
 
@@ -203,35 +205,20 @@ function hungUp() {
 function messenger() {
   if (hangup.checked == true) {
     document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">Hang Up</pre></span><button id="doodly" type="button" class="inputs tempTwo">Copy</button>'
-    var msgWerk = document.getElementById('doodly');
-    var copiedMsg = () => {
-      
-      var range = document.createRange();
-      range.selectNode(msging);
-      window.getSelection().removeAllRanges(); // clear current selection
-      window.getSelection().addRange(range); // to select text
-      document.execCommand("copy");
-      window.getSelection().removeAllRanges();
-    }
-    msgWerk.addEventListener('click', copiedMsg);
+    var msgWerk = document.getElementById('doodly')
 } else {
   document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">' + fudge.value + '</pre></span>'
   + '<button id="doodly" type="button" class="inputs tempTwo">Copy</button>'
   var msgWerk = document.getElementById('doodly');
-  function copiedMsg(msging) {
+  }
+  msgWerk.addEventListener('click', (e) => {
+    e.preventDefault()
+    var msging = document.getElementById('msging')
+    copiedName(msging)});
     
-      var msging = document.getElementById('msging');
-      
-      var range = document.createRange();
-      range.selectNode(msging);
-      window.getSelection().removeAllRanges(); // clear current selection
-      window.getSelection().addRange(range); // to select text
-      document.execCommand("copy");
-      window.getSelection().removeAllRanges();
   }
-  msgWerk.addEventListener('click', copiedMsg);
-  }
-}
+
+
 
 let msgBox = (e) => {
   e.preventDefault()
@@ -296,33 +283,16 @@ function blab() {
   if(another.checked == true) {
     document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button" class="inputs tempTwo">Copy</button>'
     var riddly = document.getElementById('riddly');
-    var copyPhoning = (phoning) => {
-      var phoning = document.getElementById('phoning');
-      var range = document.createRange();
-      range.selectNode(phoning);
-      window.getSelection().removeAllRanges(); // clear current selection
-      window.getSelection().addRange(range); // to select text
-      document.execCommand("copy");
-      window.getSelection().removeAllRanges();
-    }
-    riddly.addEventListener('click', copyPhoning) 
-  
-
   } else {
     document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + '</pre></span>' + '<button id="riddly" type="button" class="inputs tempTwo">Copy</button>'
     var riddly = document.getElementById('riddly');
-    var copyPhoning = (phoning) => {
-    var phoning = document.getElementById('phoning');
-    var range = document.createRange();
-    range.selectNode(phoning);
-    window.getSelection().removeAllRanges(); // clear current selection
-    window.getSelection().addRange(range); // to select text
-    document.execCommand("copy");
-    window.getSelection().removeAllRanges();
-    
     }
-    riddly.addEventListener('click', copyPhoning) 
-  }
+    riddly.addEventListener('click', (e) => {
+      e.preventDefault()
+      var phoning = document.getElementById('phoning')
+      copiedName(phoning)}) 
+
+  
   
   
   
@@ -339,9 +309,9 @@ function blab() {
       copierPhoneOne.innerHTML = 'Phone: ' + mathis + ' called from; ' + walter + ' call back number' 
     } else {
       copierPhoneOne.innerHTML = 'Phone: ' + mathis
-    };
+    }
     
-}
+  }
   var dysfunctional = (transcribe) => {
   transcribble = document.querySelector('.transcribble') 
   transcribble.style.display = 'block'; 
@@ -363,19 +333,22 @@ setAttributes(but, {"type": "button", "id": "copierDeux"});
 }
 //document.addEventListener('submit', dysfunctional);
 
-var copyScribble = (transcribble) => {
+function copyScribble() {
   transcribble = document.querySelector('.transcribble');
-  
- 
-  
-  var range = document.createRange();
-  range.selectNode(transcribble);
-  window.getSelection().removeAllRanges(); // clear current selection
-  window.getSelection().addRange(range); // to select text
-  document.execCommand("copy");
-  window.getSelection().removeAllRanges();
-  console.log("Pressed");
-}
+    if (!navigator.clipboard) {
+      // Clipboard API not available
+      console.log("F Bomb!")
+      return
+    }
+    const kinkos = transcribble.innerText
+    //let text = kinkos.innerText
+    try {
+     navigator.clipboard.writeText(kinkos)
+     console.log('Copied to clipboard', kinkos)
+    } catch (err) {
+      console.error('Failed to copy!', err)
+    } 
+  }
 /*function showTooltip(elem, msg) {
   elem.setAttribute('class', 'tooltip');
   elem.setAttribute('title', msg);
@@ -395,3 +368,8 @@ document.addEventListener('submit', nameSub);
 copierDeux.addEventListener('click', copyScribble)
 document.addEventListener('submit', numberSubs)
 document.addEventListener('submit', tooltips)
+/*document.getElementById('transcribed').addEventListener('click', (e) => {
+  console.log(e.target)
+})*/
+
+
