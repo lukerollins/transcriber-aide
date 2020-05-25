@@ -37,14 +37,14 @@ input[type="checkbox"]:checked ~ .hide-checked {
     /*display: block;*/
 }
 
-#where {
+#callBackFrom {
     opacity: 0;
     max-height: 0;
     overflow: hidden;
     /*display: none*/
 }
 
-input[type="checkbox"]:checked ~ #where {
+input[type="checkbox"]:checked ~ #callBackFrom {
     opacity: 1;
     max-height: 100px;
     overflow: visible;
@@ -58,7 +58,7 @@ input.temp:valid, textarea.temp:valid {
     padding: 0.25rem;
 }
 
-button.tempTwo {
+button.buttonStyle {
     font-size: 1rem;
     background: white;
     color: black; 
@@ -68,11 +68,11 @@ button.tempTwo {
     margin: 1rem;
 }
 
-button.tempTwo:active {
+button.buttonStyle:active {
     box-shadow: black 4px 7.5px 0 0px;   
 }
 
-button#meow {
+#submitItems {
     padding: 0.5rem;
 }
 
@@ -103,7 +103,7 @@ input.temp:invalid, textarea.temp:invalid {
     box-shadow: #900 9.5px 11.5px 0 -3px; 
 }*/
 
-button#copierDeux {
+button#copierForEmail {
     display: none;
     /*margin: 1rem;*/
     padding: 0.5rem 2.05rem;
@@ -152,7 +152,7 @@ button.tooltip:active::before {
 
 /* Using the points for units for the font size here because copy/pasting to Google Sheets seems to go better if you use the same font size that's being used in the document you are pasting to */
 
-pre.previous {
+pre.preStyles {
     display: inline-block;
     font-size: 11pt;
     white-space: pre-wrap;
@@ -165,7 +165,7 @@ pre.previous {
 
 /* Similar deal to the one as above, but in this case it's an e-mail.*/
 
-/*.transcribble {
+/*.transcribeForEmailBox {
     display: none;
     font-size: 11pt;
     background: rgb(235, 233, 233);
@@ -183,15 +183,15 @@ pre.previous {
     margin: 0.75rem;
 }
 
-#where {
+#callBackFrom {
     margin-top: 0.3rem;
 }
 
-div.transcribed button.tooltip {
+div.transcriberOne button.tooltip {
     margin: 0.5rem;
 }
 
-.transcribe {
+.transcriberTwo {
     margin: 1rem;
 }
 

@@ -16,9 +16,9 @@
         <form>
             <div>
                 <div class="inputs">
-                    <label for="theNumbers">
+                    <label for="rowAndSubject">
                         <span>Row Number</span>
-                        <input type="text" id="theNumbers" name="theNumbers" required="required" class="temp">
+                        <input type="text" id="rowAndSubject" name="rowAndSubject" required="required" class="temp">
                         <span class="error"></span> 
                     </label>
                 </div>
@@ -31,19 +31,19 @@
                     </div>
                     
                     <div class="inputs">
-                        <label for="phoney">
+                        <label for="phone">
                         <span>Phone</span>
-                        <input id="phoney" type="tel" required="required" class="temp">
+                        <input id="phone" type="tel" required="required" class="temp">
                         <span class="error"></span>
                         </label>
                     </div>
                     <div class="inputs">
                             <input type="checkbox" name="from" id="from" value="from">
-                            <label>Called from another number?</label>
-                            <div id="where">
+                            <label>Did they give another number?</label>
+                            <div id="callBackFrom">
                                 <label>
-                                <span>Called From</span>
-                                <input class="require-active temp" id="you-not" type="tel" >
+                                <span>Call Back Number</span>
+                                <input class="require-active temp" id="callBack" type="tel" >
                                 <span class="error"></span>
                                 </label>
                             </div> 
@@ -52,34 +52,34 @@
                         
             </div>
                 <!--<p>Hang Up?</p>-->
-            <!--<div class="inputs"></div>-->
-            <label class="inputs" for="hangup">Hang Up?</label><input type="checkbox" name="hangup" id="hangup" value="hangup" class="tempTwo">
+            <!--<div class="inputs" class="buttonStyle"></div>-->
+            <label class="inputs" for="hangup">Hang Up?</label><input type="checkbox" name="hangup" id="hangup" value="hangup" class="buttonStyle">
              
                
             <div class="hide-checked inputs">
-                <textarea id="hook" required="required" class="temp"></textarea>
+                <textarea id="message" required="required" class="temp"></textarea>
                 <span class="error"></span>
             </div>
-            <button id="meow" class="inputs tempTwo">Submit</button>
+            <button id="submitItems" class="inputs buttonStyle">Submit</button>
         </form>
     
-        <div id="transcribed">
-            <div id="numberedCopy"></div>
+        <div id="transcriberOne">
+            <div id="numberAndSubjectCopy"></div>
             <div id="copyName"></div>
             <div id="copyPhoneOne"></div>
             <div id="copyMsg"></div>
         </div>
     </div>
 
-    <div class="transcribe">
-        <div class="transcribble">
+    <div class="transcriberTwo">
+        <div class="transcribeForEmailBox">
             <p id="copierName"></p>
 
             <p id="copierPhoneOne"></p>
 
             <p id="copierMsg"></p>
         </div> 
-        <button type="button" id="copierDeux" class="tempTwo">Copy</button>
+        <button type="button" id="copierForEmail" class="buttonStyle">Copy</button>
     </div>
     
    

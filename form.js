@@ -3,39 +3,34 @@
 const today = new Date();
 today.now()*/
 
-let named = document.getElementById("name");
-let namedError = document.querySelector("#name + span.error");
-let another = document.querySelector('input[value="from"]');
+let name = document.getElementById("name");
+let nameError = document.querySelector("#name + span.error");
+let fromValue = document.querySelector('input[value="from"]');
 let from = document.getElementById('from');
-//let checker = document.getElementsByClassName("require-active");
-let fudge = document.getElementById("hook");
-let brokenHeart = document.querySelector('#hook + span.error')
-let noWay = document.querySelector('input[value="hangup"]');
+let message = document.getElementById("message");
+let messageError = document.querySelector('#message + span.error')
+let hungUpMsg = document.querySelector('input[value="hangup"]');
 let hangup = document.getElementById('hangup');
-let off = document.getElementById("you-not");
-var phoney = document.getElementById('phoney');
-let phoneProb = document.querySelector('#phoney + span.error')
-let offHookProb = document.querySelector('#you-not + span.error')
-
-//const meow = document.getElementById("meow");
+let callBack = document.getElementById("callBack");
+var phone = document.getElementById('phone');
+let phoneError = document.querySelector('#phone + span.error')
+let callBackError = document.querySelector('#callBack + span.error')
 //const digit = new RegExp(/\d+/);
-let theNumbers = document.getElementById("theNumbers");
-let numberError = document.querySelector('#theNumbers + span.error')
-var transcribble
+let rowAndSubject = document.getElementById("rowAndSubject");
+let rowAndSubjectError = document.querySelector('#rowAndSubject + span.error')
+var transcribeForEmailBox
 var lou = /502/;
-var tommy = /[\(\)]|\s|\-/g; 
-var matchCar = /^(\d{3})?(\d{3})(\d{4})$/;
-var jenny
-var tutone
+var parenthesisAndDash = /[\(\)]|\s|\-/g; 
+var formatMatch = /^(\d{3})?(\d{3})(\d{4})$/;
+var digitsToFormat
+var phoneToFormat
 var mathis 
-var walter
-copierDeux = document.getElementById('copierDeux')
+var fullyFormatedPhoneFrom
+copierForEmail = document.getElementById('copierForEmail')
 //var copied = document.querySelectorAll('[data-copier]')
 
 
 function tooltips() {
-//e.preventDefault()
-
 var btns = document.querySelectorAll('button[type="button"]');
 for (var i = 0; i < btns.length; i++) {
   btns[i].classList.add('tooltip');
@@ -45,23 +40,21 @@ for (var i = 0; i < btns.length; i++) {
 
 
 function setup() {
-let callMee = document.querySelectorAll('input[type="tel"]');
+let phoneToCheck = document.querySelectorAll('input[type="tel"]');
 const forms = document.getElementsByTagName('form');
 let digit = new RegExp(/\d+/);
-const ree = new RegExp(/^(?:\(?([0-9]{3})\)?[-.*\s]?)?([0-9]{3})[-.*\s]?([0-9]{4})$/g);
-for(let c = 0; c < callMee.length; c++) {
-  callMee[c].setAttribute('pattern', ree.source)
+const phoneRegEx = new RegExp(/^(?:\(?([0-9]{3})\)?[-.*\s]?)?([0-9]{3})[-.*\s]?([0-9]{4})$/g);
+for(let c = 0; c < phoneToCheck.length; c++) {
+  phoneToCheck[c].setAttribute('pattern', phoneRegEx.source)
 }
-
-  //newFunction();
 
 for(let f = 0; f < forms.length; f++) {
   forms[f].setAttribute('novalidate', true);
 }
-theNumbers.setAttribute('pattern', digit.source);
+rowAndSubject.setAttribute('pattern', digit.source);
   /*function newFunction() {
-    for (let n = 0; n < theNumbers.length; n++) {
-      theNumbers[n].setAttribute('pattern', digit.source);
+    for (let n = 0; n < rowAndSubject.length; n++) {
+      rowAndSubject[n].setAttribute('pattern', digit.source);
     }
   }*/
 }
@@ -73,224 +66,221 @@ function erroneous(field) {
 
 
 
-function copiedName(id) {
-  
-  //var zap = id.innerText
-  
+function theCopyMachine(id) {
   if (!navigator.clipboard) {
     // Clipboard API not available
     console.log("F Bomb!")
     return
   }
-  const kinkos = id.innerText
+  const textToCopy = id.innerText
   try {
-    navigator.clipboard.writeText(kinkos)
-   console.log('Copied to clipboard', kinkos)
+    navigator.clipboard.writeText(textToCopy)
+   console.log('Copied to clipboard', textToCopy)
   } catch (err) {
     console.error('Failed to copy!', err)
   }
 }
 
-function nameSub(e) {
+function submitName(e) {
   e.preventDefault()
-  if(!named.validity.valid) {
+  if(!name.validity.valid) {
     namingError()
   } else {
-    namedError.innerHTML = '';
-    namedError.className = 'error'
-    document.getElementById('copyName').innerHTML = '<span>Name: <pre data-copier="name" id="preOne" class="previous">' + named.value + '</pre></span>'
-    + '<button id="diddly" type="button" class="inputs tempTwo">Copy</button>'
+    nameError.innerHTML = '';
+    nameError.className = 'error'
+    document.getElementById('copyName').innerHTML = '<span>Name: <pre data-copier="name" id="preOne" class="preStyles">' + name.value + '</pre></span>'
+    + '<button id="diddly" type="button" class="inputs buttonStyle">Copy</button>'
     
     var namedWerk = document.getElementById('diddly');
     
 } 
 namedWerk.addEventListener('click', (e) => {
   e.preventDefault()
-  copiedName(namer)});
+  theCopyMachine(namer)});
 var namer = document.querySelector('#preOne');
-//copiedName(e, namer)
+//theCopyMachine(e, namer)
 } 
 
 
 function namingError() {
-  if (named.validity.valueMissing) {
-    namedError.textContent = 'Need a name. "None", "None given" or somehting of the sort will work, too.';
+  if (name.validity.valueMissing) {
+    nameError.textContent = 'Need a name. "None", "None given" or somehting of the sort will work, too.';
   }
 }
 
 function numeralError() {
-  if (theNumbers.validity.valueMissing) {
-    numberError.textContent = "Need the row number. One more than the actual row, remember"
-  } else if (theNumbers.validity.patternMismatch) {
+  if (rowAndSubject.validity.valueMissing) {
+    rowAndSubjectError.textContent = "Need the row number. One more than the actual row, remember"
+  } else if (rowAndSubject.validity.patternMismatch) {
     "Can't be a decimal or negative number. Rows can't be either of those."
   }
 }
 
 
 
-let numberSubs = (e) => {
+let rowAndSubjectSubmit = (e) => {
   e.preventDefault()
-  if (!theNumbers.validity.valid) {
+  if (!rowAndSubject.validity.valid) {
     numeralError()
   } else {
-    numberError.innerHTML = '';
-    numberError.className = 'error'
-    document.getElementById('numberedCopy').innerHTML = '<span>Row Number: <pre data-copier="numerals" id="numbering" class="previous">' + theNumbers.value + '</pre></span><button id="chalmers" type="button" class="inputs tempTwo">Copy</button>   <span>Subject: <pre id="subjective" class="previous">#' + theNumbers.value + '</pre></span><button id="skinner" type="button" class="inputs tempTwo">Copy</button>'
-    var chalmers = document.getElementById('chalmers');
-    var skinner = document.getElementById('skinner');
-    skinner.addEventListener('click', (e) =>{
+    rowAndSubjectError.innerHTML = '';
+    rowAndSubjectError.className = 'error'
+    document.getElementById('numberAndSubjectCopy').innerHTML = '<span>Row Number: <pre data-copier="numerals" id="sheetRowNum" class="preStyles">' + rowAndSubject.value + '</pre></span><button id="subject" type="button" class="inputs buttonStyle">Copy</button>   <span>Subject: <pre id="emailSubject" class="preStyles">#' + rowAndSubject.value + '</pre></span><button id="row" type="button" class="inputs buttonStyle">Copy</button>'
+    var subject = document.getElementById('subject');
+    var row = document.getElementById('row');
+    row.addEventListener('click', (e) =>{
       e.preventDefault()
-      var subjective = document.getElementById('subjective')
-      copiedName(subjective)});
-    chalmers.addEventListener('click', (e) =>{
+      var emailSubject = document.getElementById('emailSubject')
+      theCopyMachine(emailSubject)});
+    subject.addEventListener('click', (e) =>{
       e.preventDefault()
-      var numbering = document.getElementById('numbering')
-      copiedName(numbering)});
+      var sheetRowNum = document.getElementById('sheetRowNum')
+      theCopyMachine(sheetRowNum)});
   }
 } 
 
-let talkTalk = (e) => {
+let displayCallBackError = (e) => {
   e.preventDefault()
-  if(!off.validity.valid) {
-    phoneMalfunction() 
+  if(!callBack.validity.valid) {
+    displayCallBackProblem() 
   } else {
-    offHookProb.innerHTML = '';
-    offHookProb.className = 'error'
+    callBackError.innerHTML = '';
+    callBackError.className = 'error'
   }
 }
 
-document.addEventListener('submit', talkTalk)
+document.addEventListener('submit', displayCallBackError)
 
-function blob() {
-  var bugSpray = off.value
-  tutone = bugSpray.replace(tommy, "");
-  if(lou.test(tutone) == true) {
-    tutone = tutone.slice(3)
+function phoneFormatTwo() {
+  var bugSpray = callBack.value
+  phoneToFormat = bugSpray.replace(parenthesisAndDash, "");
+  if(lou.test(phoneToFormat) == true) {
+    phoneToFormat = phoneToFormat.slice(3)
     } else {
-      tutone
+      phoneToFormat
     }
-    jenny = tutone.match(matchCar)
-  if (jenny[1] == undefined) {
-    walter = jenny[2] + '-' + jenny[3]
-  } else if (jenny[1] != undefined) {
-      walter = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
+    digitsToFormat = phoneToFormat.match(formatMatch)
+  if (digitsToFormat[1] == undefined) {
+    fullyFormatedPhoneFrom = digitsToFormat[2] + '-' + digitsToFormat[3]
+  } else if (digitsToFormat[1] != undefined) {
+      fullyFormatedPhoneFrom = digitsToFormat[1] + '-' + digitsToFormat[2] + '-' + digitsToFormat[3]
     
   }
-  blab(walter) 
+  phoneFormatOne(fullyFormatedPhoneFrom) 
 }
 
 
-function phoneyError() {
-  if (phoney.validity.valueMissing) {
-    phoneProb.textContent = 'Need a number'
-  } else if(phoney.validity.patternMismatch) {
-    phoneProb.textContent = "Not that number"
+function phoneyProblem() {
+  if (phone.validity.valueMissing) {
+    phoneError.textContent = 'Need a number'
+  } else if(phone.validity.patternMismatch) {
+    phoneError.textContent = "Not that number"
   }
 }
 
-function phoneMalfunction() {
-  if (off.validity.valueMissing) {
-    offHookProb.textContent = 'Need a number'  
-  } else if(off.validity.patternMismatch) {
-    offHookProb.textContent = "Not that number"
+function displayCallBackProblem() {
+  if (callBack.validity.valueMissing) {
+    callBackError.textContent = 'Need a number'  
+  } else if(callBack.validity.patternMismatch) {
+    callBackError.textContent = "Not that number"
   }
 }
 
 function hungUp() {
-  if (fudge.validity.valueMissing) {
-    brokenHeart.textContent = "Check that 'Hang Up' box or enter something"
+  if (message.validity.valueMissing) {
+    messageError.textContent = "Check that 'Hang Up' box or enter something"
   }
 }
 
-function messenger() {
+function messageDisplay() {
   if (hangup.checked == true) {
-    document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">Hang Up</pre></span><button id="doodly" type="button" class="inputs tempTwo">Copy</button>'
-    var msgWerk = document.getElementById('doodly')
+    document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="preStyles">Hang Up</pre></span><button id="msgDisplayCopyButton" type="button" class="inputs buttonStyle">Copy</button>'
+    var msgDisplayCopied = document.getElementById('msgDisplayCopyButton')
 } else {
-  document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="previous">' + fudge.value + '</pre></span>'
-  + '<button id="doodly" type="button" class="inputs tempTwo">Copy</button>'
-  var msgWerk = document.getElementById('doodly');
+  document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="preStyles">' + message.value + '</pre></span>'
+  + '<button id="msgDisplayCopyButton" type="button" class="inputs buttonStyle">Copy</button>'
+  var msgDisplayCopied = document.getElementById('msgDisplayCopyButton');
   }
-  msgWerk.addEventListener('click', (e) => {
+  msgDisplayCopied.addEventListener('click', (e) => {
     e.preventDefault()
     var msging = document.getElementById('msging')
-    copiedName(msging)});
+    theCopyMachine(msging)});
     
   }
 
 
 
-let msgBox = (e) => {
+let submitMsg = (e) => {
   e.preventDefault()
-  if(!fudge.validity.valid) {
+  if(!message.validity.valid) {
     hungUp()
   } else {
-    brokenHeart.innerHTML = '';
-    brokenHeart.className = 'error'
-    messenger()
+    messageError.innerHTML = '';
+    messageError.className = 'error'
+    messageDisplay()
     dysfunctional()
   }
 }
 
-function ugh() {
-  if(another.checked != true) {
+function calledFromAnotherNum() {
+  if(fromValue.checked != true) {
       console.log('unchecked')
-      off.removeAttribute('required')
+      callBack.removeAttribute('required')
   } else {
       console.log('checked')
-      off.setAttribute('required', 'required')
+      callBack.setAttribute('required', 'required')
   }
 }
     
-function oogh() {   
-  if(noWay.checked == true) {
+function didTheyHangUp() {   
+  if(hungUpMsg.checked == true) {
       console.log('checked_another')
-      fudge.removeAttribute('required')
+      message.removeAttribute('required')
   } else {
-      fudge.setAttribute('required', 'required')
+      message.setAttribute('required', 'required')
       console.log('no check')
   } 
 }
 
-let londonCalling = (e) => {
+let submitPhoneNum = (e) => {
   e.preventDefault()
-  if(!phoney.validity.valid) {
-    phoneyError()
+  if(!phone.validity.valid) {
+    phoneyProblem()
   } else {
-    phoneProb.innerHTML = '';
-    phoneProb.className = 'error'
-    blab()
-    blob()
+    phoneError.innerHTML = '';
+    phoneError.className = 'error'
+    phoneFormatOne()
+    phoneFormatTwo()
   }
 }
 
-function blab() {
-  var goodTime = phoney.value
-  tutone = goodTime.replace(tommy, "");
-  if(lou.test(tutone) == true) {
-    tutone = tutone.slice(3)
+function phoneFormatOne() {
+  var phoneRaw = phone.value
+  phoneToFormat = phoneRaw.replace(parenthesisAndDash, "");
+  if(lou.test(phoneToFormat) == true) {
+    phoneToFormat = phoneToFormat.slice(3)
    } else {
-      tutone
+      phoneToFormat
    }
-   jenny = tutone.match(matchCar)
-  if (jenny[1] == undefined) {
-    mathis = jenny[2] + '-' + jenny[3]
-  } else if (jenny[1] != undefined) {
-      mathis = jenny[1] + '-' + jenny[2] + '-' + jenny[3]
+   digitsToFormat = phoneToFormat.match(formatMatch)
+  if (digitsToFormat[1] == undefined) {
+    mathis = digitsToFormat[2] + '-' + digitsToFormat[3]
+  } else if (digitsToFormat[1] != undefined) {
+      mathis = digitsToFormat[1] + '-' + digitsToFormat[2] + '-' + digitsToFormat[3]
     
   } 
 
-  if(another.checked == true) {
-    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + ' called from; ' + walter + ' call back number</pre></span>' + '<button id="riddly" type="button" class="inputs tempTwo">Copy</button>'
-    var riddly = document.getElementById('riddly');
+  if(fromValue.checked == true) {
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoneNum" class="preStyles">' + mathis + ' called from; ' + fullyFormatedPhoneFrom + ' call back number</pre></span>' + '<button id="copyPhoneNum" type="button" class="inputs buttonStyle">Copy</button>'
+    var copyPhoneNum = document.getElementById('copyPhoneNum');
   } else {
-    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoning" class="previous">' + mathis + '</pre></span>' + '<button id="riddly" type="button" class="inputs tempTwo">Copy</button>'
-    var riddly = document.getElementById('riddly');
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoneNum" class="preStyles">' + mathis + '</pre></span>' + '<button id="copyPhoneNum" type="button" class="inputs buttonStyle">Copy</button>'
+    var copyPhoneNum = document.getElementById('copyPhoneNum');
     }
-    riddly.addEventListener('click', (e) => {
+    copyPhoneNum.addEventListener('click', (e) => {
       e.preventDefault()
-      var phoning = document.getElementById('phoning')
-      copiedName(phoning)}) 
+      var phoneNum = document.getElementById('phoneNum')
+      theCopyMachine(phoneNum)}) 
 
   
   
@@ -299,52 +289,45 @@ function blab() {
     var copierName = document.getElementById('copierName')
     var copierPhoneOne = document.getElementById('copierPhoneOne')
     var copierMsg = document.getElementById('copierMsg')
-    copierName.innerHTML = 'Name: ' + named.value;
+    copierName.innerHTML = 'Name: ' + name.value;
     if(hangup.checked == true) {
       copierMsg.innerHTML = "Message: Hang Up"
     } else {
-      copierMsg.innerHTML = "Message: " + fudge.value
+      copierMsg.innerHTML = "Message: " + message.value
     }
-    if(another.checked == true) {
-      copierPhoneOne.innerHTML = 'Phone: ' + mathis + ' called from; ' + walter + ' call back number' 
+    if(fromValue.checked == true) {
+      copierPhoneOne.innerHTML = 'Phone: ' + mathis + ' called from; ' + fullyFormatedPhoneFrom + ' call back number' 
     } else {
       copierPhoneOne.innerHTML = 'Phone: ' + mathis
     }
     
   }
-  var dysfunctional = (transcribe) => {
-  transcribble = document.querySelector('.transcribble') 
-  transcribble.style.display = 'block'; 
-  var transcribe = document.querySelector('.transcribe')
-  //var hOne = document.createElement('h1')
-  var but = document.createElement('button')
-  //var  = document.querySelector('body')
-  transcribe.appendChild(but)
-  //transcribe.appendChild(hOne)
-  //hOne.innerText = 'Singular'
-  but.innerText = 'Copy'
-  copierDeux.style.display = 'block'
+  var dysfunctional = (transcriberTwo) => {
+  transcribeForEmailBox = document.querySelector('.transcribeForEmailBox') 
+  transcribeForEmailBox.style.display = 'block'; 
+  var transcriberTwo = document.querySelector('.transcriberTwo')
+  var createButton = document.createElement('button')
+  transcriberTwo.appendChild(createButton)
+  createButton.innerText = 'Copy'
+  copierForEmail.style.display = 'block'
 function setAttributes(el, attrs) {
   for(var key in attrs) {
     el.setAttribute(key, attrs[key]);
   }
 }
-setAttributes(but, {"type": "button", "id": "copierDeux"});
+setAttributes(createButton, {"type": "button", "id": "copierForEmail"});
 }
-//document.addEventListener('submit', dysfunctional);
-
-function copyScribble() {
-  transcribble = document.querySelector('.transcribble');
+function copyForEmailBox() {
+  transcribeForEmailBox = document.querySelector('.transcribeForEmailBox');
     if (!navigator.clipboard) {
       // Clipboard API not available
       console.log("F Bomb!")
       return
     }
-    const kinkos = transcribble.innerText
-    //let text = kinkos.innerText
+    const textToCopy = transcribeForEmailBox.innerText
     try {
-     navigator.clipboard.writeText(kinkos)
-     console.log('Copied to clipboard', kinkos)
+     navigator.clipboard.writeText(textToCopy)
+     console.log('Copied to clipboard', textToCopy)
     } catch (err) {
       console.error('Failed to copy!', err)
     } 
@@ -360,15 +343,15 @@ function clearTooltip(e) {
 }*/
  
 setup()
-noWay.addEventListener('change', oogh);
-another.addEventListener('change', ugh);
-document.addEventListener('submit', msgBox);
-document.addEventListener('submit', londonCalling);
-document.addEventListener('submit', nameSub);
-copierDeux.addEventListener('click', copyScribble)
-document.addEventListener('submit', numberSubs)
+hungUpMsg.addEventListener('change', didTheyHangUp);
+fromValue.addEventListener('change', calledFromAnotherNum);
+document.addEventListener('submit', submitMsg);
+document.addEventListener('submit', submitPhoneNum);
+document.addEventListener('submit', submitName);
+copierForEmail.addEventListener('click', copyForEmailBox)
+document.addEventListener('submit', rowAndSubjectSubmit)
 document.addEventListener('submit', tooltips)
-/*document.getElementById('transcribed').addEventListener('click', (e) => {
+/*document.getElementById('transcriberOne').addEventListener('click', (e) => {
   console.log(e.target)
 })*/
 
