@@ -144,7 +144,7 @@ let rowAndSubjectSubmit = (e) => {
   } else {
     rowAndSubjectError.innerHTML = '';
     rowAndSubjectError.className = 'error'
-    document.getElementById('numberAndSubjectCopy').innerHTML = '<span>Row Number: <pre id="sheetRowNum" class="preStyles">' + rowAndSubject.value + '</pre></span><button id="subject" type="button" class="inputs buttonStyle">Copy</button>   <span>Subject: <pre id="emailSubject" class="preStyles">#' + rowAndSubject.value + '</pre></span><button id="row" type="button" class="inputs buttonStyle">Copy</button>'
+    document.getElementById('numberAndSubjectCopy').innerHTML = '<span>Call Number: <pre id="sheetRowNum" class="preStyles">' + rowAndSubject.value + '</pre></span><button id="subject" type="button" class="inputs buttonStyle">Copy</button>   <span>Subject: <pre id="emailSubject" class="preStyles">#' + rowAndSubject.value + '</pre></span><button id="row" type="button" class="inputs buttonStyle">Copy</button>'
     var subject = document.getElementById('subject');
     var row = document.getElementById('row');
     row.addEventListener('click', (e) =>{
