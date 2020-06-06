@@ -1,17 +1,12 @@
 let name = document.getElementById("name");
-let nameError = document.querySelector("#name + span.error");
 let fromValue = document.querySelector('input[value="from"]');
 let from = document.getElementById('from');
 let message = document.getElementById("message");
-let messageError = document.querySelector('#message + span.error')
 let hungUpMsg = document.querySelector('input[value="hangup"]');
 let hangup = document.getElementById('hangup');
 let callBack = document.getElementById("callBack");
 var phone = document.getElementById('phone');
-let phoneError = document.querySelector('#phone + span.error')
-let callBackError = document.querySelector('#callBack + span.error')
 let rowAndSubject = document.getElementById("rowAndSubject");
-let rowAndSubjectError = document.querySelector('#rowAndSubject + span.error')
 var local = /502/;
 var parenthesisAndDash = /[\(\)]|\s|\-/g; 
 var formatMatch = /^(\d{3})?(\d{3})(\d{4})$/;
@@ -70,38 +65,37 @@ function didTheyHangUp() {
 
 
 function namingError() {
+  let nameError = document.getElementById("nameError"); 
   if (name.validity.valueMissing) {
-    nameError.textContent = 'Need a name. "None", "None given" or somehting of the sort will work, too.';
+   nameError.style.color = "red"
   }
 }
 
 function rowAndSubjectErrorFunc() {
-  if (rowAndSubject.validity.valueMissing) {
-    rowAndSubjectError.textContent = "Need the row number. One more than the actual row, remember"
-  } else if (rowAndSubject.validity.patternMismatch) {
-    "Can't be a decimal or negative number. Rows can't be either of those."
-  }
+  let rowAndSubjectError = document.getElementById('rowAndSubjectError')
+  if (rowAndSubject.validity.valueMissing || rowAndSubject.validity.patternMismatch) {
+  rowAndSubjectError.style.color = "red"
+}
 }
 
 function hungUp() {
+  let messageError = document.getElementById('messageError')
   if (message.validity.valueMissing) {
-    messageError.textContent = "Check that 'Hang Up' box or enter something"
+    messageError.style.color = "red"
   }
 }
 
 function phoneMatchError() {
-  if (phone.validity.valueMissing) {
-    phoneError.textContent = 'Need a number'
-  } else if(phone.validity.patternMismatch) {
-    phoneError.textContent = "Not that number"
+  let phoneError = document.getElementById('phoneError')
+  if (phone.validity.valueMissing || phone.validity.patternMismatch) {
+    phoneError.style.color = "red"
   }
 }
 
 function displayCallBackProblem() {
+  let callBackError = document.getElementById('callBackError')
   if (callBack.validity.valueMissing) {
-    callBackError.textContent = 'Need a number'  
-  } else if(callBack.validity.patternMismatch) {
-    callBackError.textContent = "Not that number"
+    callBackError.style.color = "red"
   }
 }
 
@@ -120,13 +114,10 @@ let theCopyMachine = (id) => {
   }
 }
 
-let submitName = (e) => {
-  e.preventDefault()
+let submitName = () => {
   if(!name.validity.valid) {
     namingError()
   } else {
-    nameError.innerHTML = '';
-    nameError.className = 'error'
     document.getElementById('copyName').innerHTML = '<span>Name: <pre id="nameToCopy" class="preStyles">' + name.value + '</pre></span>'
     + '<button id="copyNameButton" type="button" class="inputs buttonStyle">Copy</button>'
     var copyNameClicked = document.getElementById('copyNameButton');
@@ -137,13 +128,10 @@ let submitName = (e) => {
     }  
 } 
 
-let rowAndSubjectSubmit = (e) => {
-  e.preventDefault()
+let rowAndSubjectSubmit = () => {
   if (!rowAndSubject.validity.valid) {
     rowAndSubjectErrorFunc()
   } else {
-    rowAndSubjectError.innerHTML = '';
-    rowAndSubjectError.className = 'error'
     document.getElementById('numberAndSubjectCopy').innerHTML = '<span>Call Number: <pre id="sheetRowNum" class="preStyles">' + rowAndSubject.value + '</pre></span><button id="subject" type="button" class="inputs buttonStyle">Copy</button>   <span>Subject: <pre id="emailSubject" class="preStyles">#' + rowAndSubject.value + '</pre></span><button id="row" type="button" class="inputs buttonStyle">Copy</button>'
     var subject = document.getElementById('subject');
     var row = document.getElementById('row');
@@ -174,13 +162,11 @@ let messageDisplay = () => {
     theCopyMachine(msging)});
   }
 
-let submitMsg = (e) => {
-  e.preventDefault()
+let submitMsg = () => {
+  //event.preventDefault()
   if(!message.validity.valid) {
     hungUp()
   } else {
-    messageError.innerHTML = '';
-    messageError.className = 'error'
     messageDisplay()
     //createTranscribeForEmailButton()
   }
@@ -241,7 +227,7 @@ let createPhoneNumberSection = () => {
       e.preventDefault()
       var phoneNum = document.getElementById('phoneNum')
       theCopyMachine(phoneNum)})
-}  
+}
 
   let transcribeForEmail = () => {
     var copierName = document.getElementById('copierName')
@@ -249,8 +235,8 @@ let createPhoneNumberSection = () => {
     var copierMsg = document.getElementById('copierMsg')
     var transcribeForEmailBox = document.querySelector('#transcribeForEmailBox')
     var copierForEmail = document.querySelector('#copierForEmail')
+    transcribeForEmailBox.style.cssText = "display: block; background: rgba(24, 24, 24, 0.603);color: white;padding: 0.25rem 1rem;font-size: 1.15rem;";
     copierForEmail.style.display = 'block';
-  transcribeForEmailBox.style.display = 'block';
     copierName.innerHTML = 'Name: ' + name.value;
     if(hangup.checked == true) {
       copierMsg.innerHTML = "Message: Hang Up"
@@ -268,42 +254,39 @@ let createPhoneNumberSection = () => {
     })
   }
 
-  let submitPhoneNum = (e) => {
-    e.preventDefault()
+  let submitPhoneNum = () => {
     if(!phone.validity.valid) {
       phoneMatchError()
     } else {
-      phoneError.innerHTML = '';
-      phoneError.className = 'error' 
       phoneFormatOne()
       
     }
   }
   //document.addEventListener('submit', displayCallBackError)
 
-let submitCallbackNumber = (e) =>{
-  e.preventDefault()
+let submitCallbackNumber = () =>{
   if(!callBack.validity.valid) {
     displayCallBackProblem() 
   } else {
-    callBackError.innerHTML = '';
-    callBackError.className = 'error'
     phoneFormatTwo()
   }
 }
 
-document.addEventListener('submit', submitCallbackNumber)
-document.addEventListener('submit', createPhoneNumberSection)
+let onSubmit = (e) => {
+  e.preventDefault()
+  submitMsg()
+  submitCallbackNumber()
+  submitPhoneNum()
+  submitName()
+  rowAndSubjectSubmit()
+  tooltips()
+  createPhoneNumberSection()
+  transcribeForEmail()
+}
 
 setup()
 hungUpMsg.addEventListener('change', didTheyHangUp);
 fromValue.addEventListener('change', calledFromAnotherNum);
-document.addEventListener('submit', submitMsg);
-document.addEventListener('submit', submitPhoneNum);
-document.addEventListener('submit', submitName);
-document.addEventListener('submit', transcribeForEmail)
-document.addEventListener('submit', rowAndSubjectSubmit)
-document.addEventListener('submit', tooltips)
-
+document.addEventListener('submit', onSubmit);
 
 
