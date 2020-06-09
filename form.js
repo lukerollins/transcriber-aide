@@ -10,7 +10,7 @@ let rowAndSubject = document.getElementById("rowAndSubject");
 var local = /502/;
 var parenthesisAndDash = /[\(\)]|\s|\-/g; 
 var formatMatch = /^(\d{3})?(\d{3})(\d{4})$/;
-var digitsToFormat
+
 var fullyFormattedPhoneOne 
 var fullyFormattedPhoneTwo
 
@@ -173,6 +173,7 @@ let submitMsg = () => {
 }
 
 let phoneFormatOne = () => {
+  var digitsToFormat
   var phoneToFormat
   var phoneRaw = phone.value
   phoneToFormat = phoneRaw.replace(parenthesisAndDash, "");
@@ -182,37 +183,48 @@ let phoneFormatOne = () => {
       phoneToFormat
    }
    digitsToFormat = phoneToFormat.match(formatMatch)
-  if (digitsToFormat[1] != undefined) {
-    //fullyFormattedPhoneOne = digitsToFormat[2] + '-' + digitsToFormat[3]
-    fullyFormattedPhoneOne = digitsToFormat[1] + '-' + digitsToFormat[2] + '-' + digitsToFormat[3]
-  } else if (digitsToFormat[1] == undefined) {
-      //fullyFormattedPhoneOne = digitsToFormat[1] + '-' + digitsToFormat[2] + '-' + digitsToFormat[3]
-      fullyFormattedPhoneOne = digitsToFormat[2] + '-' + digitsToFormat[3]
+  if (digitsToFormat[1] == undefined) {
+    digitsToFormat
+    fullyFormattedPhoneOne = digitsToFormat[2] + '-' + digitsToFormat[3]
+    //fullyFormattedPhoneOne = digitsToFormat[1] + '-' + digitsToFormat[2] + '-' + digitsToFormat[3]
+  } else if (digitsToFormat[1] != undefined) {
+      fullyFormattedPhoneOne = digitsToFormat[1] + '-' + digitsToFormat[2] + '-' + digitsToFormat[3]
+      //digitsToFormat.slice(2)
+      //fullyFormattedPhoneOne = digitsToFormat[2] + '-' + digitsToFormat[3]
   } 
   //phoneFormatTwo(fullyFormattedPhoneOne)
   createPhoneNumberSection(fullyFormattedPhoneOne)
 }
 
 let phoneFormatTwo = () => {
+  var digitsToFormatTwo
   var phoneToFormat
   var phoneRawTwo = callBack.value
   phoneToFormat = phoneRawTwo.replace(parenthesisAndDash, "");
+
   if(local.test(phoneToFormat) == true) {
      phoneToFormat = phoneToFormat.slice(3)
     } else {
       phoneToFormat
     }
-    digitsToFormat = phoneToFormat.match(formatMatch)
-  if (digitsToFormat[1] != undefined) {
-    fullyFormattedPhoneTwo = digitsToFormat[1] + '-' + digitsToFormat[2] + '-' + digitsToFormat[3]
-    //fullyFormattedPhoneTwo = digitsToFormat[2] + '-' + digitsToFormat[3]
-  } else if (digitsToFormat[1] == undefined) {
-      //fullyFormattedPhoneTwo = digitsToFormat[1] + '-' + digitsToFormat[2] + '-' + digitsToFormat[3]
-      fullyFormattedPhoneTwo = digitsToFormat[2] + '-' + digitsToFormat[3]
+    digitsToFormatTwo = phoneToFormat.match(formatMatch)
+  if (digitsToFormatTwo[1] == undefined) {
+    //fullyFormattedPhoneTwo = digitsToFormat[1] + '-' + digitsToFormat[2] + '-' + digitsToFormat[3]
+    digitsToFormatTwo.slice(2)
+    fullyFormattedPhoneTwo = digitsToFormatTwo[2] + '-' + digitsToFormatTwo[3]
     
+  } else if (digitsToFormatTwo[1] != undefined) {
+      fullyFormattedPhoneTwo = digitsToFormatTwo[1] + '-' + digitsToFormatTwo[2] + '-' + digitsToFormatTwo[3]
+      //fullyFormattedPhoneTwo = digitsToFormat[2] + '-' + digitsToFormat[3]
+      console.log(digitsToFormatTwo[1])
+      
+  } else if (digitsToFormatTwo === null) {
+    return
   }
   //phoneFormatOne(fullyFormattedPhoneTwo) 
   createPhoneNumberSection(fullyFormattedPhoneTwo)
+  transcribeForEmail(fullyFormattedPhoneTwo)
+  //submitCallbackNumber(digitsToFormat)
 }
 
 let createPhoneNumberSection = () => {
@@ -264,9 +276,11 @@ let createPhoneNumberSection = () => {
   }
   //document.addEventListener('submit', displayCallBackError)
 
-let submitCallbackNumber = () =>{
-  if(!callBack.validity.valid) {
+let submitCallbackNumber = () => {
+  //e.preventDefault()
+   if(!callBack.validity.valid) {
     displayCallBackProblem() 
+ 
   } else {
     phoneFormatTwo()
   }
@@ -274,19 +288,24 @@ let submitCallbackNumber = () =>{
 
 let onSubmit = (e) => {
   e.preventDefault()
-  submitMsg()
   submitCallbackNumber()
+  submitMsg()
   submitPhoneNum()
   submitName()
   rowAndSubjectSubmit()
   tooltips()
   createPhoneNumberSection()
   transcribeForEmail()
+  
 }
 
+/* Notes for Tuesday, June, 7 2020 @ 1:11AM
+Apparently, the reason I didn't put all those function into one big "onSubmit" function (like the one above) is that everything works if you put it in order. If submit call back number has nothing, then the whole function fails. For lack of a better term it fails. It's past one AM folks.  Any how, that's why I made a seperate event listener.  Apparently the order in which one calls a function (or variable) matters inside a function.*/
+/* Make note of discovery made on above date @ 3:08AM. Ya know, the slice(2) and all that*/
 setup()
 hungUpMsg.addEventListener('change', didTheyHangUp);
 fromValue.addEventListener('change', calledFromAnotherNum);
 document.addEventListener('submit', onSubmit);
+//document.addEventListener('submit', submitCallbackNumber)
 
 
