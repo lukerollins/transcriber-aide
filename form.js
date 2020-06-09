@@ -208,7 +208,9 @@ let phoneFormatTwo = () => {
       phoneToFormat
     }
     digitsToFormatTwo = phoneToFormat.match(formatMatch)
-  if (digitsToFormatTwo[1] == undefined) {
+ if (digitsToFormatTwo === null) {
+ return }
+ else if (digitsToFormatTwo[1] == undefined) {
     //fullyFormattedPhoneTwo = digitsToFormat[1] + '-' + digitsToFormat[2] + '-' + digitsToFormat[3]
     digitsToFormatTwo.slice(2)
     fullyFormattedPhoneTwo = digitsToFormatTwo[2] + '-' + digitsToFormatTwo[3]
@@ -217,9 +219,6 @@ let phoneFormatTwo = () => {
       fullyFormattedPhoneTwo = digitsToFormatTwo[1] + '-' + digitsToFormatTwo[2] + '-' + digitsToFormatTwo[3]
       //fullyFormattedPhoneTwo = digitsToFormat[2] + '-' + digitsToFormat[3]
       console.log(digitsToFormatTwo[1])
-      
-  } else if (digitsToFormatTwo === null) {
-    return
   }
   //phoneFormatOne(fullyFormattedPhoneTwo) 
   createPhoneNumberSection(fullyFormattedPhoneTwo)
@@ -288,7 +287,7 @@ let submitCallbackNumber = () => {
 
 let onSubmit = (e) => {
   e.preventDefault()
-  submitCallbackNumber()
+  
   submitMsg()
   submitPhoneNum()
   submitName()
@@ -296,7 +295,7 @@ let onSubmit = (e) => {
   tooltips()
   createPhoneNumberSection()
   transcribeForEmail()
-  
+  submitCallbackNumber()
 }
 
 /* Notes for Tuesday, June, 7 2020 @ 1:11AM
