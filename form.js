@@ -3,6 +3,7 @@ let fromValue = document.querySelector('input[value="from"]');
 let from = document.getElementById('from');
 let message = document.getElementById("message");
 let hungUpMsg = document.querySelector('input[value="hangup"]');
+let noPhone = document.querySelector('input[value="no_phone"]');
 let hangup = document.getElementById('hangup');
 let callBack = document.getElementById("callBack");
 var phone = document.getElementById('phone');
@@ -43,6 +44,16 @@ function erroneous(field) {
   if (from.checked != true || hangup.checked != true || field.type === '' ) return;
 }
 
+function noPhoneNumber() {   
+  if(noPhone.checked == true) {
+      console.log('no phone number')
+      phone.removeAttribute('required')
+  } else {
+      phone.setAttribute('required', 'required')
+      console.log('guess there\' s a phone number')
+  } 
+}
+
 function calledFromAnotherNum() {
   if(fromValue.checked != true) {
       console.log('unchecked')
@@ -75,7 +86,7 @@ function rowAndSubjectErrorFunc() {
   let rowAndSubjectError = document.getElementById('rowAndSubjectError')
   if (rowAndSubject.validity.valueMissing || rowAndSubject.validity.patternMismatch) {
   rowAndSubjectError.style.color = "red"
-}
+  }
 }
 
 function hungUp() {
@@ -117,6 +128,7 @@ let theCopyMachine = (id) => {
 let submitName = () => {
   if(!name.validity.valid) {
     namingError()
+    return
   } else {
     document.getElementById('copyName').innerHTML = '<span>Name: <pre id="nameToCopy" class="preStyles">' + name.value + '</pre></span>'
     + '<button id="copyNameButton" type="button" class="inputs buttonStyle">Copy</button>'
@@ -131,6 +143,7 @@ let submitName = () => {
 let rowAndSubjectSubmit = () => {
   if (!rowAndSubject.validity.valid) {
     rowAndSubjectErrorFunc()
+    return
   } else {
     document.getElementById('numberAndSubjectCopy').innerHTML = '<span>Call Number: <pre id="sheetRowNum" class="preStyles">' + rowAndSubject.value + '</pre></span><button id="subject" type="button" class="inputs buttonStyle">Copy</button>   <span>Subject: <pre id="emailSubject" class="preStyles">#' + rowAndSubject.value + '</pre></span><button id="row" type="button" class="inputs buttonStyle">Copy</button>'
     var subject = document.getElementById('subject');
@@ -166,6 +179,7 @@ let submitMsg = () => {
   //event.preventDefault()
   if(!message.validity.valid) {
     hungUp()
+    return
   } else {
     messageDisplay()
     //createTranscribeForEmailButton()
@@ -183,6 +197,9 @@ let phoneFormatOne = () => {
       phoneToFormat
    }
    digitsToFormat = phoneToFormat.match(formatMatch)
+   if (digitsToFormat === null) {
+      return
+   }
   if (digitsToFormat[1] == undefined) {
     digitsToFormat
     fullyFormattedPhoneOne = digitsToFormat[2] + '-' + digitsToFormat[3]
@@ -209,7 +226,8 @@ let phoneFormatTwo = () => {
     }
     digitsToFormatTwo = phoneToFormat.match(formatMatch)
  if (digitsToFormatTwo === null) {
- return }
+  return 
+}
  else if (digitsToFormatTwo[1] == undefined) {
     //fullyFormattedPhoneTwo = digitsToFormat[1] + '-' + digitsToFormat[2] + '-' + digitsToFormat[3]
     digitsToFormatTwo.slice(2)
@@ -227,7 +245,11 @@ let phoneFormatTwo = () => {
 }
 
 let createPhoneNumberSection = () => {
-  if(fromValue.checked == true) {
+  if(noPhone.checked == true) {
+    document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoneNum" class="preStyles">None</pre></span><button id="copyPhoneNum" type="button" class="inputs buttonStyle">Copy</button>'
+    var copyPhoneNum = document.getElementById('copyPhoneNum');
+  }
+  else if(fromValue.checked == true) {
     document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoneNum" class="preStyles">' + fullyFormattedPhoneOne + ' called from; ' + fullyFormattedPhoneTwo + ' call back number</pre></span>' + '<button id="copyPhoneNum" type="button" class="inputs buttonStyle">Copy</button>'
     var copyPhoneNum = document.getElementById('copyPhoneNum');
   } else {
@@ -254,7 +276,10 @@ let createPhoneNumberSection = () => {
     } else {
       copierMsg.innerHTML = "Message: " + message.value
     }
-    if(fromValue.checked == true) {
+    if(noPhone.checked == true) {
+      copierPhoneOne.innerHTML = 'Phone: None'
+    }
+    else if(fromValue.checked == true) {
       copierPhoneOne.innerHTML = 'Phone: ' + fullyFormattedPhoneOne + ' called from; ' + fullyFormattedPhoneTwo + ' call back number' 
     } else {
       copierPhoneOne.innerHTML = 'Phone: ' + fullyFormattedPhoneOne
@@ -268,6 +293,7 @@ let createPhoneNumberSection = () => {
   let submitPhoneNum = () => {
     if(!phone.validity.valid) {
       phoneMatchError()
+      return
     } else {
       phoneFormatOne()
       
@@ -278,8 +304,8 @@ let createPhoneNumberSection = () => {
 let submitCallbackNumber = () => {
   //e.preventDefault()
    if(!callBack.validity.valid) {
-    displayCallBackProblem() 
- 
+    displayCallBackProblem()
+    return 
   } else {
     phoneFormatTwo()
   }
@@ -287,21 +313,25 @@ let submitCallbackNumber = () => {
 
 let onSubmit = (e) => {
   e.preventDefault()
-  
+  if (!name.validity.valid || !rowAndSubject.validity.valid || !message.validity.valid || !phone.validity.valid || !callBack.validity.valid) {
+    return
+  } else {
   submitMsg()
   submitPhoneNum()
   submitName()
   rowAndSubjectSubmit()
   tooltips()
   createPhoneNumberSection()
-  transcribeForEmail()
+  transcribeForEmail() 
   submitCallbackNumber()
+  }
 }
 
 /* Notes for Tuesday, June, 7 2020 @ 1:11AM
 Apparently, the reason I didn't put all those function into one big "onSubmit" function (like the one above) is that everything works if you put it in order. If submit call back number has nothing, then the whole function fails. For lack of a better term it fails. It's past one AM folks.  Any how, that's why I made a seperate event listener.  Apparently the order in which one calls a function (or variable) matters inside a function.*/
 /* Make note of discovery made on above date @ 3:08AM. Ya know, the slice(2) and all that*/
 setup()
+noPhone.addEventListener('change', noPhoneNumber);
 hungUpMsg.addEventListener('change', didTheyHangUp);
 fromValue.addEventListener('change', calledFromAnotherNum);
 document.addEventListener('submit', onSubmit);

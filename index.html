@@ -33,14 +33,18 @@
                     </div>
                     
                     <div class="inputs">
+                        <input type="checkbox" name="no_phone" id="no_phone" value="no_phone">
+                        <label for="no_phone_number">Check if there is no phone number.</label>
+                        <div id="no_phone_number_disappear">
                         <label for="phone">
                         <span>Phone</span>
-                        <input id="phone" type="tel" required="required" class="temp">
+                        <input id="phone" type="tel" required="required" class="require-active temp">
                         <!--<span class="error"></span>-->
-                        <p class="instruct" id="phoneError">Don't worry about the format of the phone number, it'll be changed to the proper format (local: 123-4567; non-local: 123-4567-890) on submit. Don't worry about the 502 area code being there, it'll be taken out on submit. Don't worry not entering the the 502 either, seven digits will work too.</p>
+                        <p class="instruct" id="phoneError">Don't worry about the format of the phone number, it'll be changed to the proper format (local: 123-4567; non-local: 123-4567-890) on submit. Don't worry about the 502 area code being there, it'll be taken out on submit. Don't worry not entering the the 502 either, seven digits will work too. If there's no phone number given, just check the box that box above.</p>
                         </label>
+                        </div>
                     </div>
-                    <div class="inputs" id="callback">
+                    <div class="inputs">
                             <input type="checkbox" name="from" id="from" value="from">
                             <label for="callFrom">Did they give another number?</label>
                             <div id="callBackFrom">
@@ -59,7 +63,8 @@
             <!--<div class="inputs" class="buttonStyle"></div>-->
             <div class="inputs">
             <label for="hangup">Hang Up?</label><input type="checkbox" name="hangup" id="hangup" value="hangup" class="buttonStyle">  
-            <div class="hide-checked">
+            <div id="hide-checked">
+                <span id="message_span">Message</span>
                 <textarea id="message" required="required" class="temp"></textarea>
                 <!--<span class="error"></span>-->
                 <p class="instruct" id="messageError">Leave a message or check that "Hang Up" box. If necessary, describe the call here. (Trust me, I've had to do something like this once.)</p>
