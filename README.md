@@ -14,11 +14,10 @@ When you're finally through and want to move on to the next message, all you hav
 
 - This thing has no frills for a reason. Namely, I wanted it to be a tool anyone could use, quickly and easily. While I might be able to host it online, I'm not 100% certain I can, so I thought I'd keep it as simple as possible. So no libraries, no frameworks, nothing that'd require a server. Just HTML, CSS, and JavaScript. That way, all you've got to do is download the \.zip file, uzip it, and open the 'index.html' in your browser.
 
-- I used some front end validation in hopes of making this tool more intuitive. That being said, I'm not sure if my validation is all that great. If something isn't entered it won't be displayed to the right or \(in the case of a phone nubmer\) display "undefined" instead of just not displaying anything at all, except for something to tell you that you left something out or entered to wrong type of information some where.
+- ~~I used some front end validation in hopes of making this tool more intuitive. That being said, I'm not sure if my validation is all that great. If something isn't entered it won't be displayed to the right or \(in the case of a phone nubmer\) display "undefined" instead of just not displaying anything at all, except for something to tell you that you left something out or entered to wrong type of information some where.~~
 
-- In a weird twist, we've been getting referrals from other agency's, and these don't always have a phone number. That means I'll have to make a checkbox similar to the one I made for the "Message"\\"Hang Up" section. This means that the whole phone number undefined thing/non-display thing actually works out for now. 
+- ~~In a weird twist, we've been getting referrals from other agency's, and these don't always have a phone number. That means I'll have to make a checkbox similar to the one I made for the "Message"\\"Hang Up" section. This means that the whole phone number undefined thing/non-display thing actually works out for now.~~
+
+- **Update 6/13/20:** I think I might have solved both of the two struck through problems. 
 
 - Occasionally we get people who leave two phone numbers and either of them could be used to call them back \(like a cellphone and landline number\). This means the transcriber have to do some extra editing after the fact. I'll have to see if there's a remedy. I'm guessing select boxes?
-
-
-
