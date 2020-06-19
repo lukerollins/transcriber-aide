@@ -9,7 +9,7 @@ let callBack = document.getElementById("callBack");
 var phone = document.getElementById('phone');
 let rowAndSubject = document.getElementById("rowAndSubject");
 var local = /502/;
-var parenthesisAndDash = /[\(\)]|\s|\-/g; 
+var parenthesisAndDash = /[\(\)]|\s|\-|\./g; 
 var formatMatch = /^(\d{3})?(\d{3})(\d{4})$/;
 
 var fullyFormattedPhoneOne 
@@ -74,7 +74,6 @@ function didTheyHangUp() {
   } 
 }
 
-
 function namingError() {
   let nameError = document.getElementById("nameError"); 
   if (name.validity.valueMissing) {
@@ -128,8 +127,8 @@ let theCopyMachine = (id) => {
 let submitName = () => {
   if(!name.validity.valid) {
     namingError()
-    return
   } else {
+    nameError.removeAttribute('style')
     document.getElementById('copyName').innerHTML = '<span>Name: <pre id="nameToCopy" class="preStyles">' + name.value + '</pre></span>'
     + '<button id="copyNameButton" type="button" class="inputs buttonStyle">Copy</button>'
     var copyNameClicked = document.getElementById('copyNameButton');
@@ -143,8 +142,8 @@ let submitName = () => {
 let rowAndSubjectSubmit = () => {
   if (!rowAndSubject.validity.valid) {
     rowAndSubjectErrorFunc()
-    return
   } else {
+    rowAndSubjectError.removeAttribute('style')
     document.getElementById('numberAndSubjectCopy').innerHTML = '<span>Call Number: <pre id="sheetRowNum" class="preStyles">' + rowAndSubject.value + '</pre></span><button id="subject" type="button" class="inputs buttonStyle">Copy</button>   <span>Subject: <pre id="emailSubject" class="preStyles">#' + rowAndSubject.value + '</pre></span><button id="row" type="button" class="inputs buttonStyle">Copy</button>'
     var subject = document.getElementById('subject');
     var row = document.getElementById('row');
@@ -165,6 +164,7 @@ let messageDisplay = () => {
     document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="preStyles">Hang Up</pre></span><button id="msgDisplayCopyButton" type="button" class="inputs buttonStyle">Copy</button>'
     var msgDisplayCopied = document.getElementById('msgDisplayCopyButton')
 } else {
+  
   document.getElementById('copyMsg').innerHTML = '<span>Message: <pre id="msging" class="preStyles">' + message.value + '</pre></span>'
   + '<button id="msgDisplayCopyButton" type="button" class="inputs buttonStyle">Copy</button>'
   var msgDisplayCopied = document.getElementById('msgDisplayCopyButton');
@@ -178,11 +178,10 @@ let messageDisplay = () => {
 let submitMsg = () => {
   //event.preventDefault()
   if(!message.validity.valid) {
-    hungUp()
-    return
+    hungUp() 
   } else {
+    messageError.removeAttribute('style')
     messageDisplay()
-    //createTranscribeForEmailButton()
   }
 }
 
@@ -245,7 +244,10 @@ let phoneFormatTwo = () => {
 }
 
 let createPhoneNumberSection = () => {
-  if(noPhone.checked == true) {
+  if (!phone.validity.valid || !callBack.validity.valid) {
+    return
+  }
+  else if(noPhone.checked == true) {
     document.getElementById('copyPhoneOne').innerHTML = '<span>Phone: <pre id="phoneNum" class="preStyles">None</pre></span><button id="copyPhoneNum" type="button" class="inputs buttonStyle">Copy</button>'
     var copyPhoneNum = document.getElementById('copyPhoneNum');
   }
@@ -263,6 +265,7 @@ let createPhoneNumberSection = () => {
 }
 
   let transcribeForEmail = () => {
+   
     var copierName = document.getElementById('copierName')
     var copierPhoneOne = document.getElementById('copierPhoneOne')
     var copierMsg = document.getElementById('copierMsg')
@@ -270,7 +273,9 @@ let createPhoneNumberSection = () => {
     var copierForEmail = document.querySelector('#copierForEmail')
     transcribeForEmailBox.style.cssText = "display: block; background: rgba(24, 24, 24, 0.603);color: white;padding: 0.25rem 1rem;font-size: 1.15rem;";
     copierForEmail.style.display = 'block';
+    
     copierName.innerHTML = 'Name: ' + name.value;
+    
     if(hangup.checked == true) {
       copierMsg.innerHTML = "Message: Hang Up"
     } else {
@@ -292,39 +297,33 @@ let createPhoneNumberSection = () => {
 
   let submitPhoneNum = () => {
     if(!phone.validity.valid) {
-      phoneMatchError()
-      return
+    phoneMatchError()
     } else {
+      phoneError.removeAttribute('style')
       phoneFormatOne()
-      
     }
   }
   //document.addEventListener('submit', displayCallBackError)
 
 let submitCallbackNumber = () => {
-  //e.preventDefault()
    if(!callBack.validity.valid) {
-    displayCallBackProblem()
-    return 
+  displayCallBackProblem()  
   } else {
+    callBackError.removeAttribute('style')
     phoneFormatTwo()
   }
 }
 
 let onSubmit = (e) => {
   e.preventDefault()
-  if (!name.validity.valid || !rowAndSubject.validity.valid || !message.validity.valid || !phone.validity.valid || !callBack.validity.valid) {
-    return
-  } else {
   submitMsg()
   submitPhoneNum()
+  submitCallbackNumber()
   submitName()
   rowAndSubjectSubmit()
-  tooltips()
   createPhoneNumberSection()
   transcribeForEmail() 
-  submitCallbackNumber()
-  }
+  tooltips()
 }
 
 /* Notes for Tuesday, June, 7 2020 @ 1:11AM
