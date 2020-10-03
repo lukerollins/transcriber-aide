@@ -21,3 +21,5 @@ When you're finally through and want to move on to the next message, all you hav
 - **Update 6/13/20:** I think I might have solved both of the two struck through problems. 
 
 - Occasionally we get people who leave two phone numbers and either of them could be used to call them back \(like a cellphone and landline number\). This means the transcriber have to do some extra editing after the fact. I'll have to see if there's a remedy. I'm guessing select boxes?
+
+- **Update 10/3/20:** Made some instructions for clearing the autofill function. It's in the `Alleviate_Worries.md` file.  
