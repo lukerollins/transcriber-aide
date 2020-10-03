@@ -9,7 +9,7 @@ let callBack = document.getElementById("callBack");
 var phone = document.getElementById('phone');
 let rowAndSubject = document.getElementById("rowAndSubject");
 var local = /502/;
-var parenthesisAndDash = /[\(\)]|\s|\-|\./g; 
+var parenthesisAndDash = /[\(\)]|\s|\-|\|\\|\/|\./g; 
 var formatMatch = /^(\d{3})?(\d{3})(\d{4})$/;
 
 var fullyFormattedPhoneOne 
@@ -29,7 +29,7 @@ function setup() {
 let phoneToCheck = document.querySelectorAll('input[type="tel"]');
 const forms = document.getElementsByTagName('form');
 let digit = new RegExp(/\d+/);
-const phoneRegEx = new RegExp(/^(?:\(?([0-9]{3})\)?[-.*\s]?)?([0-9]{3})[-.*\s]?([0-9]{4})$/g);
+const phoneRegEx = new RegExp(/(?:\(?([0-9]{3})\)?[-.*\/\\\s]?)?([0-9]{3})[-.*\/\\\s]?([0-9]{4})$/g);
 for(let c = 0; c < phoneToCheck.length; c++) {
   phoneToCheck[c].setAttribute('pattern', phoneRegEx.source)
 }
