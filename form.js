@@ -8,7 +8,7 @@ let hangup = document.getElementById('hangup');
 let callBack = document.getElementById("callBack");
 var phone = document.getElementById('phone');
 let rowAndSubject = document.getElementById("rowAndSubject");
-var local = /502/;
+var local = /502/m;
 var parenthesisAndDash = /[\(\)]|\s|\-|\|\\|\/|\./g; 
 var formatMatch = /^(\d{3})?(\d{3})(\d{4})$/;
 
