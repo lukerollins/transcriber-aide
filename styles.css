@@ -222,7 +222,7 @@ div.transcriberOne button.tooltip {
     margin: 0.5rem;
 }
 
-.transcriberTwo {
+#transcriberTwo {
     margin: 1rem;
 }
 
@@ -274,3 +274,11 @@ input#hangup.buttonStyle {
     color: white;
     padding: 0.25rem 0.33rem;
 }*/
+
+#phoneError {
+    margin: .55rem 0
+}
+
+#callBackDates {
+    display: none;
+}

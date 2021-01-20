@@ -12,6 +12,7 @@ var local = /502/m;
 var parenthesisAndDash = /[\(\)]|\s|\-|\|\\|\/|\./g; 
 var formatMatch = /^(\d{3})?(\d{3})(\d{4})$/;
 
+
 var fullyFormattedPhoneOne 
 var fullyFormattedPhoneTwo
 
@@ -314,6 +315,24 @@ let submitCallbackNumber = () => {
   }
 }
 
+let seeCallbackTextArea = () => {
+  var callBackDates = document.querySelector('#callBackDates');
+  var copierCallBackDates = document.querySelector('#copierCallBackDates');
+  var callBackTextArea = document.querySelector('#callBackTextArea')
+  callBackDates.style.cssText = "display: block; padding: 0.25rem 1rem;font-size: 1.15rem;"
+  copierCallBackDates.style.display = 'block'; 
+  copierCallBackDates.addEventListener('click', (e) => {
+    e.preventDefault();
+    try{
+      navigator.clipboard.writeText(callBackTextArea.value)
+      console.log("worked", callBackTextArea.value)
+    } catch (err) {
+      console.error("Fuck", err)}
+    
+    
+  });
+}
+
 let onSubmit = (e) => {
   e.preventDefault()
   submitMsg()
@@ -323,6 +342,7 @@ let onSubmit = (e) => {
   rowAndSubjectSubmit()
   createPhoneNumberSection()
   transcribeForEmail() 
+  seeCallbackTextArea()
   tooltips()
 }
 
